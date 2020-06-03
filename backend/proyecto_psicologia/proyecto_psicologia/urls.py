@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 from rest_framework.authtoken import views
+from django_rest_passwordreset.views import reset_password_request_token, reset_password_confirm, reset_password_validate_token
 
 #from django.contrib.auth import views as auth_views
 
@@ -23,6 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('retos/', include('retos.urls', namespace='retos')),
     path('retos-token-auth/', views.obtain_auth_token, name='retos-token-auth'),
+    url(r'^api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    #path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    
     #path('accounts/', include('allauth.urls')),
     #path('reset_password/', auth_views.PasswordResetView.as_view(), name='reset_password'),
     #path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
