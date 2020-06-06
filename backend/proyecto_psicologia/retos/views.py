@@ -65,7 +65,11 @@ class UserRecordView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid(raise_exception=ValueError):
-            serializer.create(validated_data=request.data)
+            print("request data: ", request.data)
+            modder = request.data.dict()
+            modder['email'] = [modder.get('email')]
+            print('modder: ',modder)
+            serializer.create(validated_data=modder)
             return Response(
                 serializer.data,
                 status=status.HTTP_201_CREATED
