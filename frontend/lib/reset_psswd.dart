@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/register.dart';
-import 'package:frontend/reset_psswd.dart';
 
-class UserLogin extends StatefulWidget {
-  @override
-  _UserLoginState createState() => _UserLoginState();
+class UserResetPsswd extends StatefulWidget {
+ @override
+  _UserResetPsswdState createState() => _UserResetPsswdState();
 }
 
-class _UserLoginState extends State<UserLogin> {
+class _UserResetPsswdState extends State<UserResetPsswd> {
   TextEditingController emailEditingContrller = TextEditingController();
   TextEditingController pswdEditingContrller = TextEditingController();
+  TextEditingController repswdEditingContrller = TextEditingController();
   Color backcolor = HexColor("#F4F1E9");
 
   @override
@@ -35,10 +34,10 @@ class _UserLoginState extends State<UserLogin> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Text(
-                    'Login',
+                    'Restaurar contraseña',
                     style: TextStyle(
                     fontSize: 24,
                     color: Colors.grey,
@@ -93,6 +92,30 @@ class _UserLoginState extends State<UserLogin> {
                                 style: BorderStyle.solid))),
                   ),
                   SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    autofocus: false,
+                    obscureText: true,
+                    keyboardType: TextInputType.text,
+                    controller: repswdEditingContrller,
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        labelText: "Confirmar contraseña",
+                        hintText: "Confirma tu contraseña",
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: Colors.green,
+                                style: BorderStyle.solid))),
+                  ),
+                  SizedBox(
                     height: 20,
                   ),
                   ButtonTheme(
@@ -104,45 +127,20 @@ class _UserLoginState extends State<UserLogin> {
                       textColor: Colors.white,
                       color: Colors.green,
                       height: 50,
-                      child: Text("INICIAR SESIÓN"),
+                      child: Text("RESTAURAR"),
                     ),
                     shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.7),
                     side: BorderSide(color: Colors.green)
                     ),
                   ),
-                  FlatButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => UserRegister())
-                      );
-                    },
-                    child: Text(
-                      "¿No tienes cuenta?",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.normal)
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => UserResetPsswd())
-                      );
-                    },
-                    child: Text(
-                      "¿Olvidaste tu contraseña?",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.normal)
-                    ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Center(
                     child: SizedBox(
-                      height: 195,
-                      child: Image.asset('assets/images/login.png'),
+                      height: 150,
+                      child: Image.asset('assets/images/passwd.png'),
                     ),
                   )
                 ],
