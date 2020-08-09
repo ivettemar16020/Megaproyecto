@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/register.dart';
 import 'package:frontend/reset_psswd.dart';
+import 'package:frontend/emotions.dart';
 
 class UserLogin extends StatefulWidget {
   @override
@@ -100,7 +101,12 @@ class _UserLoginState extends State<UserLogin> {
                     //color: Colors.green,
                     minWidth: double.infinity,
                     child: MaterialButton(
-                      onPressed: () => {},
+                      onPressed: (){
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => EmotionsPage())
+                        );
+                      },
                       textColor: Colors.white,
                       color: Colors.green,
                       height: 50,

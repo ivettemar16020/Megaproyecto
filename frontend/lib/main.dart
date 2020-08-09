@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/home_page.dart';
+import 'package:frontend/login.dart';
+import 'package:frontend/emotions.dart';
 
 void main() => runApp(MyApp());
 
