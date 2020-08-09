@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/create_user_db.dart';
+import 'package:frontend/user.dart';
 
 class UserRegister extends StatefulWidget {
  @override
@@ -6,11 +8,13 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
-  TextEditingController nameEditingContrller = TextEditingController();
-  TextEditingController emailEditingContrller = TextEditingController();
-  TextEditingController pswdEditingContrller = TextEditingController();
-  TextEditingController repswdEditingContrller = TextEditingController();
+  final TextEditingController nameEditingContrller = TextEditingController();
+  final TextEditingController emailEditingContrller = TextEditingController();
+  final TextEditingController pswdEditingContrller = TextEditingController();
+  final TextEditingController repswdEditingContrller = TextEditingController();
   Color backcolor = HexColor("#F4F1E9");
+
+  Future<User> _futureUser;
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +152,11 @@ class _UserRegisterState extends State<UserRegister> {
                     //color: Colors.green,
                     minWidth: double.infinity,
                     child: MaterialButton(
-                      onPressed: () => {},
+                      onPressed: () {
+                        setState(() {
+                          _futureUser = createUser(nameEditingContrller.text, emailEditingContrller.text, pswdEditingContrller.text);
+                        });
+                      },
                       textColor: Colors.white,
                       color: Colors.green,
                       height: 50,
