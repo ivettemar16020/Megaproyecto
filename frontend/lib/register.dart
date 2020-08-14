@@ -174,7 +174,7 @@ class _UserRegisterState extends State<UserRegister> {
                     ),
                   )
                 ],
-              ),
+              )
             ),
           ),
         ),

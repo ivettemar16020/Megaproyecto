@@ -5,22 +5,24 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 Future<User> createUser(String username, String email, String password) async {
+  final Map<dynamic, dynamic> userParams = {
+    'username': username,
+    'email': email,
+    'password': password,
+  };
 
   final http.Response response = await http.post(
     'https://megap115.herokuapp.com/retos/user/',
     headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: jsonEncode(<String, String>{
-      'username': username,
-      'email': email,
-      'password': password,
-    }),
+    body: userParams,
   );
-  if (response.statusCode == 201) {
+  if (response.statusCode == 500) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
-    return User.fromJson(json.decode(response.body));
+    //return User.fromJson(json.decode(response.body));
+    print("Sip")
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
