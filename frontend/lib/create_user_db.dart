@@ -21,11 +21,10 @@ Future<User> createUser(String username, String email, String password) async {
   if (response.statusCode == 500) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
-    //return User.fromJson(json.decode(response.body));
-    print("Sip")
+    response.body;
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
-    throw Exception('Error al cargar usuario');
+    throw Exception('Error al crear el usuario');
   }
 }

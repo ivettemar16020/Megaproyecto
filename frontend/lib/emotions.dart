@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/home.dart';
 
 class EmotionsPage extends StatelessWidget {
   Color backcolor = HexColor("#F4F1E9");
@@ -48,7 +49,12 @@ class EmotionsPage extends StatelessWidget {
                     Column(
                       children: [
                         FlatButton(
-                          onPressed: null,
+                          onPressed: (){
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => MyHomePage())
+                            );
+                          },
                           padding: EdgeInsets.all(5),
                           color: Colors.yellow,
                           child: Image.asset('assets/images/happy.png')
