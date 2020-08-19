@@ -17,11 +17,11 @@ class _MyHomePageState extends State<MyHomePage> {
           Column(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height*0.43,
+                height: MediaQuery.of(context).size.height*0.30,
                 width: MediaQuery.of(context).size.width,
                 color: Color(0xfff86B540),
                 child: Container(
-                  margin: EdgeInsets.only(right: 40, top: 20, bottom: 20),
+                  margin: EdgeInsets.only(right: 30, top: 20, bottom: 20),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -35,32 +35,28 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Column(
             children: <Widget>[
-              SizedBox(height: 100,),
+              SizedBox(height: 50,),
+              /*
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/user.png', width: 60.0, height: 60.0,
+                  ),
+                ],
+              ),*/
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.all(20),
-                child: Text("Bienvenido \nJohn", style: TextStyle(
+                child: Text("Bienvenid@ \nJose", style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w700,
                   color:Colors.white
                 ),),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width*0.9,
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(40))
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.settings,
-                    size: 30, color: Colors.red,),
-                    SizedBox(width: 20,),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10,),
+              SizedBox(height: 5,),
               Expanded(
                 child: GridView.count(crossAxisCount: 2,
                   childAspectRatio: 0.85,
