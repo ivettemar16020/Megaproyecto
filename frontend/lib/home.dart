@@ -8,20 +8,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Color backcolor = HexColor("#F4F1E9");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff8f8f8),
+      backgroundColor: backcolor,
       body: Stack(
         children: <Widget>[
           Column(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height*0.30,
+                height: MediaQuery.of(context).size.height*0.28,
                 width: MediaQuery.of(context).size.width,
-                color: Color(0xfff86B540),
+                color: Colors.deepOrangeAccent,
                 child: Container(
-                  margin: EdgeInsets.only(right: 30, top: 20, bottom: 20),
+                  margin: EdgeInsets.only(right: 30, top: 20, bottom: 20, left: 10),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Column(
             children: <Widget>[
-              SizedBox(height: 50,),
+              SizedBox(height: 10,),
               /*
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,14 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),*/
               Container(
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(20),
-                child: Text("Bienvenid@ \nJose", style: TextStyle(
+                padding: EdgeInsets.all(30),
+                child: Text("Hola \nJose", style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w700,
                   color:Colors.white
                 ),),
               ),
-              SizedBox(height: 5,),
               Expanded(
                 child: GridView.count(crossAxisCount: 2,
                   childAspectRatio: 0.85,
@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Column(
                       children: <Widget>[
                         FaIcon(FontAwesomeIcons.medal, color: Colors.orange,),
+                        
                       ],
                     ),
                     Column(
@@ -152,4 +153,16 @@ class _MyHomePageState extends State<MyHomePage> {
   {
     Navigator.pushNamed(context, '/productPage', arguments: {'image':'$img', 'title':'$title'});
   }
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

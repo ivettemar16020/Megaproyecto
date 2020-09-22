@@ -52,6 +52,9 @@ flutter:
   assets:
     - assets/images/login.png
     - assets/images/user.png
+    - assets/images/userblanco.png
+    - assets/images/usernegro.png
+    - assets/images/usernaranja.png
     - assets/images/regis.png
     - assets/images/passwd.png
     - assets/images/happy.png

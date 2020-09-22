@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/create_user_db.dart';
 import 'package:frontend/user.dart';
+import 'package:frontend/login.dart';
 
 class UserRegister extends StatefulWidget {
  @override
@@ -20,6 +21,17 @@ class _UserRegisterState extends State<UserRegister> {
   Widget build(BuildContext context) {
     return Scaffold(
       //resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: (){Navigator.pop(context);},
+          icon: Icon(Icons.arrow_back_ios,
+          color: Colors.black,
+          ),
+        ),
+      ),
+      extendBodyBehindAppBar: true,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -57,8 +69,8 @@ class _UserRegisterState extends State<UserRegister> {
                     keyboardType: TextInputType.text,
                     controller: nameEditingContrller,
                     decoration: InputDecoration(
-                        labelText: "Nombre",
-                        hintText: "Nombre",
+                        labelText: "Username",
+                        hintText: "Ej. Anita22",
                         filled: true,
                         fillColor: Colors.white,
                         labelStyle: TextStyle(
@@ -69,7 +81,7 @@ class _UserRegisterState extends State<UserRegister> {
                             borderRadius: BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
-                                color: Colors.green,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid))),
                   ),
                   SizedBox(
@@ -82,7 +94,7 @@ class _UserRegisterState extends State<UserRegister> {
                     controller: emailEditingContrller,
                     decoration: InputDecoration(
                         labelText: "Email",
-                        hintText: "Email",
+                        hintText: "Ej. correo@uvg.edu.gt",
                         filled: true,
                         fillColor: Colors.white,
                         labelStyle: TextStyle(
@@ -93,7 +105,7 @@ class _UserRegisterState extends State<UserRegister> {
                             borderRadius: BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
-                                color: Colors.green,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid))),
                   ),
                   SizedBox(
@@ -117,7 +129,7 @@ class _UserRegisterState extends State<UserRegister> {
                             borderRadius: BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
-                                color: Colors.green,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid))),
                   ),
                   SizedBox(
@@ -141,7 +153,7 @@ class _UserRegisterState extends State<UserRegister> {
                             borderRadius: BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
-                                color: Colors.green,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid))),
                   ),
                   SizedBox(
@@ -156,15 +168,19 @@ class _UserRegisterState extends State<UserRegister> {
                         setState(() {
                           _futureUser = createUser(nameEditingContrller.text, emailEditingContrller.text, pswdEditingContrller.text);
                         });
+                        Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => UserLogin())
+                      );
                       },
                       textColor: Colors.white,
-                      color: Colors.green,
+                      color: Colors.deepOrangeAccent,
                       height: 50,
                       child: Text("CREAR CUENTA"),
                     ),
                     shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.7),
-                    side: BorderSide(color: Colors.green)
+                    side: BorderSide(color: Colors.deepOrangeAccent)
                     ),
                   ),
                  Center(

@@ -25,14 +25,11 @@ class _UserLoginState extends State<UserLogin> {
             child: Center(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 8,
-                  ),
                   Center(
                     child: SizedBox(
                       width: 70,
                       height: 70,
-                      child: Image.asset('assets/images/user.png'),
+                      child: Image.asset('assets/images/usernaranja.png'),
                     ),
                   ),
                   SizedBox(
@@ -108,13 +105,13 @@ class _UserLoginState extends State<UserLogin> {
                         );
                       },
                       textColor: Colors.white,
-                      color: Colors.green,
+                      color: Colors.deepOrangeAccent,
                       height: 50,
                       child: Text("INICIAR SESIÓN"),
                     ),
                     shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.7),
-                    side: BorderSide(color: Colors.green)
+                    side: BorderSide(color: Colors.deepOrangeAccent)
                     ),
                   ),
                   FlatButton(

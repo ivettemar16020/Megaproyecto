@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/login.dart';
-import 'package:frontend/emotions.dart';
+import 'ProductPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Avenir',
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       ),
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
       home: UserLogin(),
+      routes: {
+        '/productPage' : (context)=>ProductPage(),
+      },
     );
   }
 }

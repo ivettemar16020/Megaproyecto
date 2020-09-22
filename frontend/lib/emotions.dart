@@ -8,24 +8,19 @@ class EmotionsPage extends StatefulWidget {
 }
 
 class _EmotionsPage extends State<EmotionsPage> {
+  Color backcolor = HexColor("#F4F1E9");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffF4F1E9),
+      backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
           Column(
             children: <Widget>[
+              SizedBox(height: 35,),
               Container(
-                height: MediaQuery.of(context).size.height*0.30,
+                height: MediaQuery.of(context).size.height*0.25,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Color(0xfffD25148),
-                  border: Border.all(
-                     color: Color(0xfffD25148),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(50))
-                ),
                 child: Container(
                   margin: EdgeInsets.only(right: 40, top: 20, bottom: 20),
                   alignment: Alignment.centerLeft,
@@ -35,20 +30,20 @@ class _EmotionsPage extends State<EmotionsPage> {
           ),
           Column(
             children: <Widget>[
-              SizedBox(height: 35,),
+              SizedBox(height: 32,),
               Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.all(20),
-                child: Text("¿Cómo te sientes \nhoy?", style: TextStyle(
+                padding: EdgeInsets.all(10.0),
+                decoration: myBoxDecoration(),
+                child: Text("¿Cómo te sientes \nhoy?", textAlign: TextAlign.center, style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w700,
                   color:Colors.white
                 ),),
               ),
-              SizedBox(height: 10,),
-              Expanded(
+              Expanded( 
                 child: GridView.count(crossAxisCount: 2,
-                  childAspectRatio: 0.85,
+                  childAspectRatio: 1, 
                   children: <Widget>[
                     categoryWidget('happy'),
                     categoryWidget('sad'),
@@ -63,16 +58,37 @@ class _EmotionsPage extends State<EmotionsPage> {
       ),
     );
   }
+
+BoxDecoration myBoxDecoration() {
+  return BoxDecoration(
+    color: Colors.deepOrangeAccent,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(10),
+        topRight: Radius.circular(10),
+        bottomLeft: Radius.circular(10),
+        bottomRight: Radius.circular(10)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.deepOrangeAccent.withOpacity(0.3),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 6), // changes position of shadow
+      ),
+    ],
+  );
+}
+
   Container categoryWidget(String img)
   {
     return Container(
       margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
       width: MediaQuery.of(context).size.width*0.3,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(30)),
+        color: backcolor,
+        borderRadius: BorderRadius.all(Radius.circular(100)),
         boxShadow: [BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.deepOrangeAccent.withOpacity(0.8),
           blurRadius: 20,
           spreadRadius: 1,
           offset: Offset(0,10),
@@ -103,4 +119,16 @@ class _EmotionsPage extends State<EmotionsPage> {
       ),
     );
   }
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

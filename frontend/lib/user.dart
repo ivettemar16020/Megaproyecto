@@ -13,3 +13,31 @@ class User {
     );
   }
 }
+
+class Token {
+  final String username;
+  final String password;
+
+  Token({this.username, this.password});
+
+  factory Token.fromJson(Map<String, dynamic> json) {
+    return Token(
+      username: json['username'],
+      password: json['password'],
+    );
+  }
+
+}
+
+class GetUser {
+  final String token;
+
+  GetUser({this.token});
+
+  factory GetUser.fromJson(Map<String, dynamic> json) {
+    return GetUser(
+      token: json['token'],
+    );
+  }
+
+}

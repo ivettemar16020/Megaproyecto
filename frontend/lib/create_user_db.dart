@@ -18,10 +18,11 @@ Future<User> createUser(String username, String email, String password) async {
     },
     body: userParams,
   );
-  if (response.statusCode == 500) {
+  if (response.statusCode == 500 || response.statusCode == 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     response.body;
+    //print(response.body);
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
