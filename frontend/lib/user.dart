@@ -29,6 +29,20 @@ class Token {
 
 }
 
+class Tokencito {
+  final String token;
+
+  Tokencito._({this.token});
+
+  factory Tokencito.fromJson(Map<String, dynamic> json) {
+    return new Tokencito._(
+      token: json['token'],
+    );
+  }
+
+}
+
+
 class GetUser {
   final String token;
 

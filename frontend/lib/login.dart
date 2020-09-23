@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend/register.dart';
 import 'package:frontend/reset_psswd.dart';
 import 'package:frontend/emotions.dart';
+import 'package:frontend/user.dart';
+import 'package:frontend/create_user_db.dart';
 
 class UserLogin extends StatefulWidget {
   @override
@@ -9,9 +11,11 @@ class UserLogin extends StatefulWidget {
 }
 
 class _UserLoginState extends State<UserLogin> {
-  TextEditingController emailEditingContrller = TextEditingController();
+  TextEditingController nameEditingContrller = TextEditingController();
   TextEditingController pswdEditingContrller = TextEditingController();
   Color backcolor = HexColor("#F4F1E9");
+
+  Future<Token> _futureToken;
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +53,10 @@ class _UserLoginState extends State<UserLogin> {
                     autofocus: false,
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
-                    controller: emailEditingContrller,
+                    controller: nameEditingContrller,
                     decoration: InputDecoration(
-                        labelText: "Email",
-                        hintText: "Email",
+                        labelText: "Username",
+                        hintText: "Username",
                         filled: true,
                         fillColor: Colors.white,
                         labelStyle: TextStyle(
@@ -99,9 +103,12 @@ class _UserLoginState extends State<UserLogin> {
                     minWidth: double.infinity,
                     child: MaterialButton(
                       onPressed: (){
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => EmotionsPage())
+                        setState(() {
+                          _futureToken = getToken(nameEditingContrller.text, pswdEditingContrller.text);
+                        });
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(builder: (context) => EmotionsPage())
                         );
                       },
                       textColor: Colors.white,

@@ -13,6 +13,10 @@ class _UserRegisterState extends State<UserRegister> {
   final TextEditingController emailEditingContrller = TextEditingController();
   final TextEditingController pswdEditingContrller = TextEditingController();
   final TextEditingController repswdEditingContrller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  var passKey = GlobalKey<FormFieldState>();
+
   Color backcolor = HexColor("#F4F1E9");
 
   Future<User> _futureUser;
@@ -36,7 +40,7 @@ class _UserRegisterState extends State<UserRegister> {
         child: SingleChildScrollView(
           child: Container(
             color: backcolor,
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.all(30),
             child: Center(
               child: Column(
                 children: <Widget>[
@@ -47,7 +51,7 @@ class _UserRegisterState extends State<UserRegister> {
                     child: SizedBox(
                       width: 70,
                       height: 70,
-                      child: Image.asset('assets/images/user.png'),
+                      child: Image.asset('assets/images/usernaranja.png'),
                     ),
                   ),
                   SizedBox(
@@ -63,98 +67,130 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: 40,
                   ),
-                  TextField(
-                    autofocus: false,
-                    obscureText: false,
-                    keyboardType: TextInputType.text,
-                    controller: nameEditingContrller,
-                    decoration: InputDecoration(
-                        labelText: "Username",
-                        hintText: "Ej. Anita22",
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        TextFormField(
+                          autofocus: false,
+                          obscureText: false,
+                          keyboardType: TextInputType.text,
+                          controller: nameEditingContrller,
+                          decoration: InputDecoration(
+                            labelText: "Username",
+                            hintText: "Ej. Anita22",
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              ),
+                            border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
                                 color: Colors.deepOrangeAccent,
-                                style: BorderStyle.solid))),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    autofocus: false,
-                    obscureText: false,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: emailEditingContrller,
-                    decoration: InputDecoration(
-                        labelText: "Email",
-                        hintText: "Ej. correo@uvg.edu.gt",
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
+                                style: BorderStyle.solid))
+                          ),
+                          validator: (String value) {
+                            if (value.trim().isEmpty) {
+                              return 'Este campo es obligatorio';
+                            }
+                          },
                         ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
-                            borderSide: BorderSide(
-                                width: 1,
-                                color: Colors.deepOrangeAccent,
-                                style: BorderStyle.solid))),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    autofocus: false,
-                    obscureText: true,
-                    keyboardType: TextInputType.text,
-                    controller: pswdEditingContrller,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelText: "Contraseña",
-                        hintText: "Contraseña",
-                        labelStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
-                            borderSide: BorderSide(
-                                width: 1,
-                                color: Colors.deepOrangeAccent,
-                                style: BorderStyle.solid))),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    autofocus: false,
-                    obscureText: true,
-                    keyboardType: TextInputType.text,
-                    controller: repswdEditingContrller,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelText: "Confirmar contraseña",
-                        hintText: "Confirma tu contraseña",
-                        labelStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
-                            borderSide: BorderSide(
-                                width: 1,
-                                color: Colors.deepOrangeAccent,
-                                style: BorderStyle.solid))),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        autofocus: false,
+                        obscureText: false,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: emailEditingContrller,
+                        decoration: InputDecoration(
+                            labelText: "Email",
+                            hintText: "Ej. correo@uvg.edu.gt",
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color: Colors.deepOrangeAccent,
+                                    style: BorderStyle.solid))),
+                         validator: (String value) {
+                            if (value.trim().isEmpty) {
+                              return 'Este campo es obligatorio';
+                            }
+                          },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        key: passKey,
+                        autofocus: false,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        controller: pswdEditingContrller,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "Contraseña",
+                            hintText: "Contraseña",
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color: Colors.deepOrangeAccent,
+                                    style: BorderStyle.solid))),
+                        validator: (password) {
+                          var result = password.length < 4
+                              ? "Contraseña muy corta"
+                              : null;
+                          return result;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        autofocus: false,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        controller: repswdEditingContrller,
+                        validator: (value){
+                          if (value != passKey.currentState.value) {
+                            return 'Las contraseñas no coinciden';
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "Confirmar contraseña",
+                            hintText: "Confirma tu contraseña",
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color: Colors.deepOrangeAccent,
+                                    style: BorderStyle.solid))),
+                      ),
+                    ],)
                   ),
                   SizedBox(
                     height: 20,
@@ -165,6 +201,7 @@ class _UserRegisterState extends State<UserRegister> {
                     minWidth: double.infinity,
                     child: MaterialButton(
                       onPressed: () {
+                        _submit();
                         setState(() {
                           _futureUser = createUser(nameEditingContrller.text, emailEditingContrller.text, pswdEditingContrller.text);
                         });
@@ -183,12 +220,13 @@ class _UserRegisterState extends State<UserRegister> {
                     side: BorderSide(color: Colors.deepOrangeAccent)
                     ),
                   ),
+                /*
                  Center(
                     child: SizedBox(
                       height: 350,
                       child: Image.asset('assets/images/regis.png'),
                     ),
-                  )
+                  )*/
                 ],
               )
             ),
@@ -197,7 +235,12 @@ class _UserRegisterState extends State<UserRegister> {
       ),
     );
   }
+  void _submit() {
+    _formKey.currentState.validate();
+    print('Form submitted');
+  }
 }
+
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
