@@ -29,28 +29,14 @@ class Token {
 
 }
 
-class Tokencito {
-  final String token;
-
-  Tokencito._({this.token});
-
-  factory Tokencito.fromJson(Map<String, dynamic> json) {
-    return new Tokencito._(
-      token: json['token'],
-    );
-  }
-
-}
-
-
 class GetUser {
-  final String token;
+  final String authorization;
 
-  GetUser({this.token});
+  GetUser({this.authorization});
 
   factory GetUser.fromJson(Map<String, dynamic> json) {
     return GetUser(
-      token: json['token'],
+      authorization: json['token'],
     );
   }
 

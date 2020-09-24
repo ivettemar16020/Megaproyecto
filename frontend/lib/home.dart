@@ -1,6 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:frontend/user.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -51,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.all(30),
-                child: Text("Hola \nJose", style: TextStyle(
+                child: Text("HOLA", style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w700,
                   color:Colors.white
@@ -165,4 +170,20 @@ class HexColor extends Color {
   }
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+getStringValuesSF() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  //Return String
+  String token = prefs.getString('token');
+  print('Que peces, $token');
+  final request = await http.get('https://megap115.herokuapp.com/retos/user/', headers: {
+  'Authorization': 'TOKEN $token',
+  });
+  if (request.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    print(request.body);
+  }
+  return token;
 }

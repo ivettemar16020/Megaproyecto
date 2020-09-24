@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:frontend/register.dart';
 import 'package:frontend/reset_psswd.dart';
 import 'package:frontend/emotions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:frontend/user.dart';
-import 'package:frontend/create_user_db.dart';
 
 class UserLogin extends StatefulWidget {
   @override
@@ -175,4 +178,40 @@ class HexColor extends Color {
   }
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+Future<Token> getToken(String username, String password) async {
+  final Map<dynamic, dynamic> tokenParams = {
+    'username': username,
+    'password': password,
+  };
+
+  final http.Response response = await http.post(
+    'https://megap115.herokuapp.com/retos-token-auth/',
+    headers: <String, String>{
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: tokenParams,
+  );
+  if (response.statusCode == 200) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    response.body;
+    Map<String, dynamic> token = jsonDecode(response.body);
+
+    addStringToSF(token['token']);
+
+    //print('Token, ${token['token']}!');
+    //print(response.body);
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Error al obtener el usuario');
+  }
+}
+
+addStringToSF(token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  //print('AHORA AQUI, ${token}');
+  prefs.setString('token', token);
 }
