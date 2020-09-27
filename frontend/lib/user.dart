@@ -41,3 +41,24 @@ class GetUser {
   }
 
 }
+
+class TheUser {
+  String username;
+  String email;
+
+  TheUser({
+    this.username, 
+    this.email
+  });
+
+  factory TheUser.fromJson(Map<String, dynamic> json) => new TheUser(
+        username: json["username"],
+        email: json["email"],
+    );
+
+  Map<String, dynamic> toJson() =>
+    {
+      'name': username,
+      'email': email,
+    };
+}

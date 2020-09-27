@@ -5,63 +5,131 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:frontend/user.dart';
 
 class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   Color backcolor = HexColor("#F4F1E9");
+  String name = '';
+  String email = '';
   @override
+  void initState() {
+    /*
+    getStringValuesSF().then((value){
+      print('Retrieved information from token');
+    });
+    super.initState();
+    */
+    getStringValuesSF();
+    setName().then((value){
+      setState(() {
+      name = value;
+      });
+    });
+
+    setEmail().then((value){
+      setState(() {
+      email = value;
+      });
+    });
+
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backcolor,
       body: Stack(
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height*0.28,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.deepOrangeAccent,
-                child: Container(
-                  margin: EdgeInsets.only(right: 30, top: 20, bottom: 20, left: 10),
-                  alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/path.png'),
-                      fit: BoxFit.contain
-                    )
+          Container(
+            color: Colors.deepOrangeAccent,
+            height: MediaQuery.of(context).size.height*0.20 ,
+            child: Padding(
+              padding:  EdgeInsets.only(left: 30.0, right: 30.0, top: 10 ),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        height: MediaQuery.of(context).size.height*0.11  ,
+                        width: MediaQuery.of(context).size.width*0.22, 
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/images/userblanco.png"))
+                        ),
+                      ),
+                      SizedBox(width: 5 ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(name, style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 1 ),
+                          Row(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                SizedBox(width: 2 ),
+                                Text(email, style: TextStyle(
+                                    color: Colors.white60,
+                                    fontSize: 16,
+                                ),),
+                              ],
+                            ),
+                          ]),
+                        ],
+                      )
+                    ]
                   ),
-                ),
-              )
-            ],
+                  SizedBox(height: 8  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                       Column(
+                        children: <Widget>[
+                          Text("0", style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold
+                          ),),
+                          Text("Puntos", style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 8,
+                          ),),
+                        ],
+                      ),
+
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white60),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("EDITAR PERFIL", style: TextStyle(
+                            color: Colors.white60,
+                            fontSize: 8,
+                          ),),
+                        ),
+                      )
+                    ]
+                  ),
+                ],
+              ),
+            ),
           ),
           Column(
             children: <Widget>[
-              SizedBox(height: 10,),
-              /*
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Image.asset(
-                    'assets/images/user.png', width: 60.0, height: 60.0,
-                  ),
-                ],
-              ),*/
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(30),
-                child: Text("HOLA", style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700,
-                  color:Colors.white
-                ),),
-              ),
+              SizedBox(height: 100,),
               Expanded(
                 child: GridView.count(crossAxisCount: 2,
                   childAspectRatio: 0.85,
@@ -183,7 +251,35 @@ getStringValuesSF() async {
   if (request.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    print(request.body);
+    List<dynamic> list = jsonDecode(request.body) as List;
+    String name = list[0]['username'];
+    String email = list[0]['email'];
+    print(name + email);
+    addValuesToSF(name, email);
+    return list;
+
+    //String userToJson(TheUser data) => json.encode(data.toJson());
+
   }
   return token;
+}
+
+addValuesToSF(name, email) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('name', name);
+  prefs.setString('email', email);
+}
+
+setName() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  //Return String
+  String name = prefs.getString('name');
+  return name;
+}
+
+setEmail() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  //Return String
+  String email = prefs.getString('email');
+  return email;
 }
