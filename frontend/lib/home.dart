@@ -6,6 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:frontend/achievement.dart';
+import 'package:frontend/statistics.dart';
+import 'package:frontend/help.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
   @override
@@ -94,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                       FaIcon(FontAwesomeIcons.signOutAlt, color: Colors.white,),
                        Column(
                         children: <Widget>[
                           Text("0", style: TextStyle(
@@ -103,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),),
                           Text("Puntos", style: TextStyle(
                             color: Colors.white70,
-                            fontSize: 8,
+                            fontSize: 10,
                           ),),
                         ],
                       ),
@@ -129,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Column(
             children: <Widget>[
-              SizedBox(height: 100,),
+              SizedBox(height: 110,),
               Expanded(
                 child: GridView.count(crossAxisCount: 2,
                   childAspectRatio: 0.85,
@@ -149,23 +154,55 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        FaIcon(FontAwesomeIcons.home)
+                        IconButton(
+                          icon:FaIcon(FontAwesomeIcons.home, color: Colors.orange),
+                          onPressed: (){
+                            Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => MyHomePage())
+                            );
+                          },
+                        ),
+                      ],
+                      
+                    ),
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          icon:FaIcon(FontAwesomeIcons.medal, color: Colors.orange),
+                          onPressed: (){
+                            Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => AchievementPage())
+                            );
+                          },
+                        ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        FaIcon(FontAwesomeIcons.medal, color: Colors.orange,),
-                        
+                        IconButton(
+                          icon:FaIcon(FontAwesomeIcons.chartBar, color: Colors.orange),
+                          onPressed: (){
+                            Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => StatisticsPage())
+                            );
+                          },
+                        ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        FaIcon(FontAwesomeIcons.chartBar, color: Colors.orange,),
-                      ],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        FaIcon(FontAwesomeIcons.question, color: Colors.orange,),
+                        IconButton(
+                          icon:FaIcon(FontAwesomeIcons.question, color: Colors.orange),
+                          onPressed: (){
+                            Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => HelpPage())
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
