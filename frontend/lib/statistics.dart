@@ -74,7 +74,7 @@ class _StatisticsPage extends State<StatisticsPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 4),
                 color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

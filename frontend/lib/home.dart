@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:frontend/login.dart';
 import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Container(
             color: Colors.deepOrangeAccent,
-            height: MediaQuery.of(context).size.height*0.20 ,
+            height: MediaQuery.of(context).size.height*0.21,
             child: Padding(
               padding:  EdgeInsets.only(left: 30.0, right: 30.0, top: 10 ),
               child: Column(
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              fit: BoxFit.cover,
+                              //fit: BoxFit.cover,
                               image: AssetImage("assets/images/userblanco.png"))
                         ),
                       ),
@@ -94,11 +95,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ]
                   ),
-                  SizedBox(height: 8  ),
+                  SizedBox(height: 1  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                       FaIcon(FontAwesomeIcons.signOutAlt, color: Colors.white,),
+                       new IconButton(icon: FaIcon(FontAwesomeIcons.signOutAlt, color: Colors.white,), onPressed: () {
+                        Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => UserLogin())
+                      );
+                       }),
                        Column(
                         children: <Widget>[
                           Text("0", style: TextStyle(
@@ -147,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 4),
                 color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -223,10 +229,10 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(30)),
         boxShadow: [BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          blurRadius: 20,
-          spreadRadius: 1,
-          offset: Offset(0,10),
+          color: Colors.yellow[800].withOpacity(0.4),
+          blurRadius: 6,
+          spreadRadius: 0.4,
+          offset: Offset(0.5,10),
         )]
       ),
       child: InkWell(
@@ -263,6 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
   {
     Navigator.pushNamed(context, '/productPage', arguments: {'image':'$img', 'title':'$title'});
   }
+  
 }
 
 class HexColor extends Color {

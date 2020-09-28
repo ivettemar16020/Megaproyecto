@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/home.dart';
 
 class EmotionsPage extends StatefulWidget {
@@ -9,6 +8,7 @@ class EmotionsPage extends StatefulWidget {
 
 class _EmotionsPage extends State<EmotionsPage> {
   Color backcolor = HexColor("#F4F1E9");
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ class _EmotionsPage extends State<EmotionsPage> {
                     categoryWidget('happy'),
                     categoryWidget('sad'),
                     categoryWidget('angry'),
-                    categoryWidget('meh'),
+                    categoryWidget('shocked'),
                   ],
                 ),
               ),
@@ -85,7 +85,7 @@ BoxDecoration myBoxDecoration() {
       margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
       width: MediaQuery.of(context).size.width*0.3,
       decoration: BoxDecoration(
-        color: backcolor,
+        color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(100)),
         boxShadow: [BoxShadow(
           color: Colors.deepOrangeAccent.withOpacity(0.8),

@@ -62,12 +62,18 @@ flutter:
     - assets/images/happy.png
     - assets/images/sad.png
     - assets/images/angry.png
-    - assets/images/meh.png
+    - assets/images/shocked.png
     - assets/images/path.png
     - assets/images/img1.png
     - assets/images/img2.png
     - assets/images/img3.png
     - assets/images/img4.png
+    - assets/images/copa.png
+    - assets/images/copa2.png
+    - assets/images/chart.jpg
+    - assets/images/medal.png
+    - assets/images/star.png
+    - assets/images/question-mark.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
