@@ -26,7 +26,6 @@ class Token {
       password: json['password'],
     );
   }
-
 }
 
 class GetUser {
@@ -39,26 +38,37 @@ class GetUser {
       authorization: json['token'],
     );
   }
-
 }
 
 class TheUser {
   String username;
   String email;
 
-  TheUser({
-    this.username, 
-    this.email
-  });
+  TheUser({this.username, this.email});
 
   factory TheUser.fromJson(Map<String, dynamic> json) => new TheUser(
         username: json["username"],
         email: json["email"],
-    );
+      );
 
-  Map<String, dynamic> toJson() =>
-    {
-      'name': username,
-      'email': email,
-    };
+  Map<String, dynamic> toJson() => {
+        'name': username,
+        'email': email,
+      };
+}
+
+class Emotion {
+  final String racha;
+  final String emocionFinal;
+  final String emocionInicial;
+
+  Emotion({this.racha, this.emocionFinal, this.emocionInicial});
+
+  factory Emotion.fromJson(Map<String, dynamic> json) {
+    return Emotion(
+      racha: json['racha'],
+      emocionFinal: json['emocion_final'],
+      emocionInicial: json['emocion_inicial'],
+    );
+  }
 }

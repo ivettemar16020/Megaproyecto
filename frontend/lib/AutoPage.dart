@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProductPage extends StatefulWidget {
+import 'package:frontend/home.dart';
+import 'package:frontend/achievement.dart';
+import 'package:frontend/statistics.dart';
+import 'package:frontend/help.dart';
+
+class AutoPage extends StatefulWidget {
   @override
-  _ProductPageState createState() => _ProductPageState();
+  _AutoPageState createState() => _AutoPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _AutoPageState extends State<AutoPage> {
   @override
   Widget build(BuildContext context) {
-    String selectedImg;
-    String selectTitle;
-    final Map arguments = ModalRoute.of(context).settings.arguments as Map;
-    selectedImg = arguments['image'];
-    selectTitle = arguments['title'];
     return Scaffold(
       backgroundColor: Color(0xfff8f8f8),
       appBar: AppBar(
@@ -59,7 +59,7 @@ class _ProductPageState extends State<ProductPage> {
                         Container(
                           padding: EdgeInsets.only(left: 20, right: 20),
                           child: Text(
-                            '$selectTitle',
+                            'Autoestima',
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.w700),
                           ),
@@ -114,7 +114,7 @@ class _ProductPageState extends State<ProductPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/$selectedImg.png'),
+                                            'assets/images/img1.png'),
                                         fit: BoxFit.contain)),
                               ),
                             )
@@ -161,7 +161,7 @@ class _ProductPageState extends State<ProductPage> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           child: Text(
-                            '$selectTitle',
+                            'Autoestima',
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w700),
                           ),
@@ -189,7 +189,7 @@ class _ProductPageState extends State<ProductPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/$selectedImg.png'))),
+                                            'assets/images/img1.png'))),
                               ),
                               Expanded(
                                 child: Column(
@@ -230,35 +230,64 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 4),
                 color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Column(
-                      children: <Widget>[FaIcon(FontAwesomeIcons.home)],
-                    ),
-                    Column(
                       children: <Widget>[
-                        FaIcon(
-                          FontAwesomeIcons.medal,
-                          color: Colors.orange,
+                        IconButton(
+                          icon: FaIcon(FontAwesomeIcons.home,
+                              color: Colors.orange),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyHomePage()));
+                          },
                         ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        FaIcon(
-                          FontAwesomeIcons.chartBar,
-                          color: Colors.orange,
+                        IconButton(
+                          icon: FaIcon(FontAwesomeIcons.medal,
+                              color: Colors.orange),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AchievementPage()));
+                          },
                         ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        FaIcon(
-                          FontAwesomeIcons.question,
-                          color: Colors.orange,
+                        IconButton(
+                          icon: FaIcon(FontAwesomeIcons.chartBar,
+                              color: Colors.orange),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => StatisticsPage()));
+                          },
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          icon: FaIcon(FontAwesomeIcons.question,
+                              color: Colors.orange),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HelpPage()));
+                          },
                         ),
                       ],
                     ),
