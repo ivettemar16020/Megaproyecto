@@ -6,12 +6,15 @@ import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
 
-class AutoPage extends StatefulWidget {
+import 'package:frontend/autoestima/AretoOne.dart';
+import 'package:frontend/autoestima/AretoTwo.dart';
+
+class AutoOneRetosPage extends StatefulWidget {
   @override
-  _AutoPageState createState() => _AutoPageState();
+  _AutoOneRetosPageState createState() => _AutoOneRetosPageState();
 }
 
-class _AutoPageState extends State<AutoPage> {
+class _AutoOneRetosPageState extends State<AutoOneRetosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,16 +36,12 @@ class _AutoPageState extends State<AutoPage> {
       body: Stack(
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height * 0.43,
+            height: MediaQuery.of(context).size.height * 0.30,
             width: MediaQuery.of(context).size.width,
             color: Color(0xffc7b8f5),
             child: Container(
               margin: EdgeInsets.only(right: 40, top: 20, bottom: 20),
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/path.png'),
-                      fit: BoxFit.contain)),
             ),
           ),
           Column(
@@ -59,7 +58,7 @@ class _AutoPageState extends State<AutoPage> {
                         Container(
                           padding: EdgeInsets.only(left: 20, right: 20),
                           child: Text(
-                            'Autoestima',
+                            'Retos',
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.w700),
                           ),
@@ -76,98 +75,21 @@ class _AutoPageState extends State<AutoPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Curso 3-10 Min',
-                                    style: TextStyle(
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'La confianza en uno mismo es el primer secreto del éxito.',
+                                    'Afirma tu valor propio',
                                     style: TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w600),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.9,
-                                    margin: EdgeInsets.only(right: 20),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(40)),
-                                    ),
-                                  )
                                 ],
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(70),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/img1.png'),
-                                        fit: BoxFit.contain)),
-                              ),
-                            )
                           ],
                         ),
                         SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  sessionWidget('Reto 1', true),
-                                  //sessionWidget('Session 2', false),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  sessionWidget('Reto 2', false),
-                                  //sessionWidget('Session 4', false),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  sessionWidget('Reto 3', false),
-                                  //sessionWidget('Session 6', false),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          child: Text(
-                            'Autoestima',
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 20),
@@ -189,20 +111,20 @@ class _AutoPageState extends State<AutoPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/img1.png'))),
+                                            'assets/images/dom.png'))),
                               ),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      'Plan 2',
+                                      'Reto 1',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Sigue cultivandote a ti mismo',
+                                      'Describe tus cualidades',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
@@ -211,9 +133,14 @@ class _AutoPageState extends State<AutoPage> {
                                 ),
                               ),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => RetoOnePage()));
+                                },
                                 icon: Icon(
-                                  Icons.lock_outline,
+                                  Icons.next_plan,
                                   size: 30,
                                   color: Colors.black,
                                 ),
@@ -223,7 +150,125 @@ class _AutoPageState extends State<AutoPage> {
                         ),
                         SizedBox(
                           height: 30,
-                        )
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/donacion.png'))),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Reto 2',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Encuentra tus cualidades',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => RetoTwoPage()));
+                                },
+                                icon: Icon(
+                                  Icons.next_plan,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/estrella.png'))),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Reto 3',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      '¿Qué nos hace diferentes?',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AutoOneRetosPage()));
+                                },
+                                icon: Icon(
+                                  Icons.next_plan,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

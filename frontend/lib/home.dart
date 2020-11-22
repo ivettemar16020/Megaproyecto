@@ -10,7 +10,7 @@ import 'package:frontend/login.dart';
 import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
-import 'package:frontend/IntroAuto.dart';
+import 'package:frontend/autoestima/IntroAuto.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);

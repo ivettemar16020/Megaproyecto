@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
-import 'package:frontend/AutoCuesti.dart';
+import 'package:frontend/autoestima/AutoCuesti.dart';
 import 'package:frontend/home.dart';
 
 class IntroAuto extends StatefulWidget {

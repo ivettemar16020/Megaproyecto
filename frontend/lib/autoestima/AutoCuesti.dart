@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -7,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:frontend/AutoPage.dart';
+import 'package:frontend/autoestima/AutoPage.dart';
 
 class AutoCuestiPage extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class AutoCuestiPage extends StatefulWidget {
 
 class _AutoCuestiPageState extends State<AutoCuestiPage> {
   int _currentIndex = 0;
+  double _currentSliderValue = 1;
   String _flag = "";
 
   String q1 = "";
@@ -28,6 +31,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   String q8 = "";
   String q9 = "";
   String q10 = "";
+
+  List<Map<dynamic, dynamic>> answers = [];
 
   final ques1Controller = TextEditingController();
   final ques2Controller = TextEditingController();
@@ -143,17 +148,34 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
                 Card(
                   child:
                       Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Escribe tu respuesta'),
-                      onChanged: (value) {
-                        print(value);
+                    Slider(
+                      //activeColor: Colors.red[700],
+                      //inactiveColor: Colors.red[300],
+                      value: _currentSliderValue,
+                      min: 1,
+                      max: 4,
+                      divisions: 3,
+                      label: _currentSliderValue.round().toString(),
+                      onChanged: (double value) {
                         setState(() {
-                          _answer[_currentIndex] = value;
+                          _currentSliderValue = value;
                         });
                       },
-                    )
+                    ),
+                    Text(
+                        (_currentSliderValue) == 1
+                            ? "1: Muy de acuerdo"
+                            : (_currentSliderValue) == 2
+                                ? "2: De acuerdo"
+                                : (_currentSliderValue) == 3
+                                    ? "3: En desacuerdo"
+                                    : (_currentSliderValue) == 4
+                                        ? "4: Muy en desacuerdo"
+                                        : "Error",
+                        style: TextStyle(
+                            height: 1.5,
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal))
                   ]),
                 ),
                 Expanded(
@@ -185,12 +207,20 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   }
 
   void _nextSubmit() {
+    Map<dynamic, dynamic> myCurttentAnsw = {
+      'r${_currentIndex + 1}': _currentSliderValue.toInt()
+    };
+    print(myCurttentAnsw);
     if (_currentIndex < 9) {
       setState(() {
         _currentIndex++;
         _flag = "q$_currentIndex";
+        answers.add(myCurttentAnsw);
       });
+      //putAnswers(myCurttentAnsw);
     } else {
+      print(jsonEncode(answers));
+      putAnswers(answers);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AutoPage()));
     }
@@ -220,5 +250,41 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
             ],
           );
         });
+  }
+
+  putAnswers(answs) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String token = prefs.getString('token');
+
+    print('Que peces, $token');
+    final request = await http.put(
+      'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
+      headers: {
+        'Authorization': 'TOKEN $token',
+      },
+      body: jsonEncode(answs),
+    );
+    if (request.statusCode == 200) {
+      print(request.body);
+    }
+    return token;
+  }
+
+  getAnswers() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String token = prefs.getString('token');
+
+    print('Que peces, $token');
+    final request = await http.get(
+        'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
+        headers: {
+          'Authorization': 'TOKEN $token',
+        });
+    if (request.statusCode == 200) {
+      print(request.body);
+    }
+    return token;
   }
 }

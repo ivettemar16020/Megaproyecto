@@ -77,6 +77,10 @@ flutter:
     - assets/images/star.png
     - assets/images/question-mark.png
     - assets/images/autoestima.png
+    - assets/images/dom.png
+    - assets/images/donacion.png
+    - assets/images/estrella.png
+    
 
   # To add assets to your application, add an assets section, like this:
   # assets:
