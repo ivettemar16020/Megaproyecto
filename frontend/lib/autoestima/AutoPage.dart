@@ -7,6 +7,7 @@ import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
 
 import 'package:frontend/autoestima/AutoOneRetos.dart';
+import 'package:frontend/autoestima/AutoTwoRetos.dart';
 
 class AutoPage extends StatefulWidget {
   @override
@@ -143,7 +144,7 @@ class _AutoPageState extends State<AutoPage> {
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -166,7 +167,68 @@ class _AutoPageState extends State<AutoPage> {
                         ),
                         SizedBox(
                           height: 30,
-                        )
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/img1.png'))),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Plan 2',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Parar malos pensamientos',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AutoTwoRetosPage()));
+                                },
+                                icon: Icon(
+                                  Icons.next_plan,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
                       ],
                     ),
                   ),

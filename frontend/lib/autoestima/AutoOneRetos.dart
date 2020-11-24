@@ -8,6 +8,7 @@ import 'package:frontend/help.dart';
 
 import 'package:frontend/autoestima/AretoOne.dart';
 import 'package:frontend/autoestima/AretoTwo.dart';
+import 'package:frontend/autoestima/AretoThree.dart';
 
 class AutoOneRetosPage extends StatefulWidget {
   @override
@@ -258,7 +259,7 @@ class _AutoOneRetosPageState extends State<AutoOneRetosPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              AutoOneRetosPage()));
+                                              RetoThreePage()));
                                 },
                                 icon: Icon(
                                   Icons.next_plan,

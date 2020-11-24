@@ -33,6 +33,7 @@ dependencies:
   flutter_secure_storage: ^3.3.4
   intro_slider: ^1.0.8
   flutter_custom_clippers: ^0.1.6
+  flutter_colorpicker: ^0.3.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -80,6 +81,10 @@ flutter:
     - assets/images/dom.png
     - assets/images/donacion.png
     - assets/images/estrella.png
+    - assets/images/comentario.png
+    - assets/images/pensar-en-negativo.png
+    - assets/images/yoga.png
+    - assets/images/brumoso.png
     
 
   # To add assets to your application, add an assets section, like this:
