@@ -89,14 +89,16 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
         appBar: AppBar(
           title: Text("QUIZ AUTOESTIMA"),
           elevation: 0,
+          backgroundColor: Colors.tealAccent[700],
         ),
         body: Stack(
           children: <Widget>[
             ClipPath(
               clipper: WaveClipperTwo(),
               child: Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).primaryColor),
+                decoration: BoxDecoration(
+                  color: Colors.tealAccent[700],
+                ),
                 height: 200,
               ),
             ),
@@ -149,8 +151,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
                   child:
                       Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Slider(
-                      //activeColor: Colors.red[700],
-                      //inactiveColor: Colors.red[300],
+                      activeColor: Colors.tealAccent[700],
+                      inactiveColor: Colors.tealAccent[100],
                       value: _currentSliderValue,
                       min: 1,
                       max: 4,

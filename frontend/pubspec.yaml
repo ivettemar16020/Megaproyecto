@@ -85,7 +85,11 @@ flutter:
     - assets/images/pensar-en-negativo.png
     - assets/images/yoga.png
     - assets/images/brumoso.png
-    
+    - assets/images/smilee.jpg
+    - assets/images/meditacion.png
+    - assets/images/happy-thoughts.png
+    - assets/images/equilibrar.png
+    - assets/images/inteligenciaemocional.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -8,7 +8,7 @@ import 'package:frontend/help.dart';
 
 import 'package:frontend/autoestima/BretoOne.dart';
 import 'package:frontend/autoestima/BretoTwo.dart';
-import 'package:frontend/autoestima/AretoThree.dart';
+import 'package:frontend/autoestima/BretoThree.dart';
 
 class AutoTwoRetosPage extends StatefulWidget {
   @override
@@ -258,7 +258,7 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              RetoThreePage()));
+                                              BRetoThreePage()));
                                 },
                                 icon: Icon(
                                   Icons.next_plan,

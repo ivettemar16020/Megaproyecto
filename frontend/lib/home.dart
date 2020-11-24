@@ -12,6 +12,8 @@ import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
 import 'package:frontend/autoestima/IntroAuto.dart';
 
+import 'package:frontend/iemocional/IntroEmo.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
   @override
@@ -261,6 +263,10 @@ class _MyHomePageState extends State<MyHomePage> {
           if (title == "Autoestima") {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => IntroAuto()));
+          }
+          if (title == "Inteligencia Emocional") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => IntroEmo()));
           }
         },
         child: Column(

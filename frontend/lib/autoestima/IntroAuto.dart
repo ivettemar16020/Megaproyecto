@@ -19,37 +19,37 @@ class _IntroAutoState extends State<IntroAuto> {
       new Slide(
         title: "AUTOESTIMA",
         styleTitle: TextStyle(
-            color: Color(0xffD02090),
+            color: Colors.tealAccent[700],
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description: "Este módulo se enfoca en cómo mejorar tu autoestima.",
         styleDescription: TextStyle(
-            color: Color(0xffD02090),
+            color: Colors.tealAccent[700],
             fontSize: 20.0,
             fontStyle: FontStyle.italic,
             fontFamily: 'Raleway'),
         pathImage: "assets/images/autoestima.png",
-        backgroundColor: Color(0xFFFFDEAD),
+        backgroundColor: Colors.white,
       ),
     );
     slides.add(
       new Slide(
         title: "CUESTIONARIO",
         styleTitle: TextStyle(
-            color: Color(0xffD02090),
+            color: Colors.tealAccent[700],
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
             "A continuación se te presentará un QUIZ que nos ayudará a identificar tus niveles de autoestima. Recuerda que no hay respuestas incorrectas, tomate tu tiempo y ¡relájate!",
         styleDescription: TextStyle(
-            color: Color(0xffD02090),
+            color: Colors.tealAccent[700],
             fontSize: 20.0,
             fontStyle: FontStyle.italic,
             fontFamily: 'Raleway'),
         pathImage: "assets/images/autoestima.png",
-        backgroundColor: Color(0xffFFF8DC),
+        backgroundColor: Colors.white,
       ),
     );
   }
@@ -67,7 +67,7 @@ class _IntroAutoState extends State<IntroAuto> {
   Widget renderNextBtn() {
     return Icon(
       Icons.navigate_next,
-      color: Color(0xffD02090),
+      color: Colors.tealAccent[800],
       size: 35.0,
     );
   }
@@ -75,14 +75,14 @@ class _IntroAutoState extends State<IntroAuto> {
   Widget renderDoneBtn() {
     return Icon(
       Icons.done,
-      color: Color(0xffD02090),
+      color: Colors.tealAccent[800],
     );
   }
 
   Widget renderSkipBtn() {
     return Icon(
       Icons.undo,
-      color: Color(0xffD02090),
+      color: Colors.tealAccent[800],
     );
   }
 
@@ -95,19 +95,19 @@ class _IntroAutoState extends State<IntroAuto> {
       // Skip button
       renderSkipBtn: this.renderSkipBtn(),
       onSkipPress: this.onSkipPress,
-      colorSkipBtn: Color(0x33000000),
-      highlightColorSkipBtn: Color(0xff000000),
+      colorSkipBtn: Colors.tealAccent[300],
+      highlightColorSkipBtn: Colors.tealAccent[300],
 
       // Next, Done button
       onDonePress: this.onDonePress,
       renderNextBtn: this.renderNextBtn(),
       renderDoneBtn: this.renderDoneBtn(),
-      colorDoneBtn: Color(0x33000000),
-      highlightColorDoneBtn: Color(0xff000000),
+      colorDoneBtn: Colors.tealAccent[300],
+      highlightColorDoneBtn: Colors.tealAccent[400],
 
       // Dot indicator
-      colorDot: Color(0x33D02090),
-      colorActiveDot: Color(0xffD02090),
+      colorDot: Colors.tealAccent[100],
+      colorActiveDot: Colors.tealAccent[200],
       sizeDot: 13.0,
     );
   }

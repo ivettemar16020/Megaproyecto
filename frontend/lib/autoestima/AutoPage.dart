@@ -8,6 +8,7 @@ import 'package:frontend/help.dart';
 
 import 'package:frontend/autoestima/AutoOneRetos.dart';
 import 'package:frontend/autoestima/AutoTwoRetos.dart';
+import 'package:frontend/autoestima/AutoThreeRetos.dart';
 
 class AutoPage extends StatefulWidget {
   @override
@@ -127,7 +128,7 @@ class _AutoPageState extends State<AutoPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/img1.png'))),
+                                            'assets/images/meditacion.png'))),
                               ),
                               Expanded(
                                 child: Column(
@@ -188,7 +189,7 @@ class _AutoPageState extends State<AutoPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/img1.png'))),
+                                            'assets/images/pensar-en-negativo.png'))),
                               ),
                               Expanded(
                                 child: Column(
@@ -219,6 +220,128 @@ class _AutoPageState extends State<AutoPage> {
                                 },
                                 icon: Icon(
                                   Icons.next_plan,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/happy-thoughts.png'))),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Plan 3',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Dialogo Interno Positivo',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AutoThreeRetosPage()));
+                                },
+                                icon: Icon(
+                                  Icons.next_plan,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/equilibrar.png'))),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Plan 4',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Mood Tracker',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AutoTwoRetosPage()));
+                                },
+                                icon: Icon(
+                                  Icons.lock,
                                   size: 30,
                                   color: Colors.black,
                                 ),
