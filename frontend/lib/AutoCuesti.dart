@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:frontend/autoestima/AutoPage.dart';
+import 'package:frontend/AutoPage.dart';
 
 class AutoCuestiPage extends StatefulWidget {
   @override
@@ -32,7 +32,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   String q9 = "";
   String q10 = "";
 
-  List<Map<dynamic, dynamic>> answers = [];
+  List<Map<String, int>> answers = [];
+  String answerstr;
 
   final ques1Controller = TextEditingController();
   final ques2Controller = TextEditingController();
@@ -59,7 +60,6 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
     final request = await http
         .get('https://megap115.herokuapp.com/retos/auto_estima/', headers: {
       'Authorization': 'TOKEN $token',
-      'Content-Type': 'application/json',
     });
     if (request.statusCode == 200) {
       // If the server did return a 200 OK response,
@@ -90,16 +90,14 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
         appBar: AppBar(
           title: Text("QUIZ AUTOESTIMA"),
           elevation: 0,
-          backgroundColor: Colors.tealAccent[700],
         ),
         body: Stack(
           children: <Widget>[
             ClipPath(
               clipper: WaveClipperTwo(),
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.tealAccent[700],
-                ),
+                decoration:
+                    BoxDecoration(color: Theme.of(context).primaryColor),
                 height: 200,
               ),
             ),
@@ -152,8 +150,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
                   child:
                       Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Slider(
-                      activeColor: Colors.tealAccent[700],
-                      inactiveColor: Colors.tealAccent[100],
+                      //activeColor: Colors.red[700],
+                      //inactiveColor: Colors.red[300],
                       value: _currentSliderValue,
                       min: 1,
                       max: 4,
@@ -210,19 +208,19 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   }
 
   void _nextSubmit() {
-    Map<dynamic, dynamic> myCurttentAnsw = {
+    Map<String, int> myCurttentAnsw = {
       'r${_currentIndex + 1}': _currentSliderValue.toInt()
     };
-    print(myCurttentAnsw);
+    //String ans = jsonEncode(myCurttentAnsw);
     if (_currentIndex < 9) {
       setState(() {
         _currentIndex++;
         _flag = "q$_currentIndex";
         answers.add(myCurttentAnsw);
       });
-      //putAnswers(myCurttentAnsw);
     } else {
-      print(jsonEncode(answers));
+      String answstr = answers.join("");
+      print(answstr);
       putAnswers(answers);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AutoPage()));
@@ -266,25 +264,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
       headers: {
         'Authorization': 'TOKEN $token',
       },
-      body: jsonEncode(answs),
+      body: answs,
     );
-    if (request.statusCode == 200) {
-      print(request.body);
-    }
-    return token;
-  }
-
-  getAnswers() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
-    String token = prefs.getString('token');
-
-    print('Que peces, $token');
-    final request = await http.get(
-        'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
-        headers: {
-          'Authorization': 'TOKEN $token',
-        });
     if (request.statusCode == 200) {
       print(request.body);
     }

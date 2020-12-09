@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UserResetPsswd extends StatefulWidget {
- @override
+  @override
   _UserResetPsswdState createState() => _UserResetPsswdState();
 }
 
@@ -18,9 +18,12 @@ class _UserResetPsswdState extends State<UserResetPsswd> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          onPressed: (){Navigator.pop(context);},
-          icon: Icon(Icons.arrow_back_ios,
-          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
           ),
         ),
       ),
@@ -41,19 +44,17 @@ class _UserResetPsswdState extends State<UserResetPsswd> {
                     child: SizedBox(
                       width: 70,
                       height: 70,
-                      child: Image.asset('assets/images/user.png'),
+                      child: Image.asset('assets/images/usernaranja.png'),
                     ),
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    'Restaurar contraseña',
-                    style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w600)
-                    ),
+                  Text('Restaurar contraseña',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600)),
                   SizedBox(
                     height: 40,
                   ),
@@ -72,7 +73,8 @@ class _UserResetPsswdState extends State<UserResetPsswd> {
                           fontSize: 16,
                         ),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
                                 color: Colors.green,
@@ -96,7 +98,8 @@ class _UserResetPsswdState extends State<UserResetPsswd> {
                           fontSize: 16,
                         ),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
                                 color: Colors.green,
@@ -120,7 +123,8 @@ class _UserResetPsswdState extends State<UserResetPsswd> {
                           fontSize: 16,
                         ),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
                                 color: Colors.green,
@@ -136,14 +140,13 @@ class _UserResetPsswdState extends State<UserResetPsswd> {
                     child: MaterialButton(
                       onPressed: () => {},
                       textColor: Colors.white,
-                      color: Colors.green,
+                      color: Colors.deepOrangeAccent,
                       height: 50,
                       child: Text("RESTAURAR"),
                     ),
                     shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.7),
-                    side: BorderSide(color: Colors.green)
-                    ),
+                        borderRadius: BorderRadius.circular(25.7),
+                        side: BorderSide(color: Colors.deepOrangeAccent)),
                   ),
                   SizedBox(
                     height: 20,

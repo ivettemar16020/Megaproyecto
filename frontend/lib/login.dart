@@ -42,13 +42,11 @@ class _UserLoginState extends State<UserLogin> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    'Login',
-                    style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w600)
-                    ),
+                  Text('Login',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600)),
                   SizedBox(
                     height: 40,
                   ),
@@ -67,7 +65,8 @@ class _UserLoginState extends State<UserLogin> {
                           fontSize: 16,
                         ),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
                                 color: Colors.green,
@@ -91,7 +90,8 @@ class _UserLoginState extends State<UserLogin> {
                           fontSize: 16,
                         ),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.7)),
                             borderSide: BorderSide(
                                 width: 1,
                                 color: Colors.green,
@@ -105,14 +105,15 @@ class _UserLoginState extends State<UserLogin> {
                     //color: Colors.green,
                     minWidth: double.infinity,
                     child: MaterialButton(
-                      onPressed: (){
+                      onPressed: () {
                         setState(() {
-                          _futureToken = getToken(nameEditingContrller.text, pswdEditingContrller.text);
+                          _futureToken = getToken(nameEditingContrller.text,
+                              pswdEditingContrller.text);
                         });
                         Navigator.push(
-                          context, 
-                          MaterialPageRoute(builder: (context) => EmotionsPage())
-                        );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EmotionsPage()));
                       },
                       textColor: Colors.white,
                       color: Colors.deepOrangeAccent,
@@ -120,37 +121,30 @@ class _UserLoginState extends State<UserLogin> {
                       child: Text("INICIAR SESIÓN"),
                     ),
                     shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.7),
-                    side: BorderSide(color: Colors.deepOrangeAccent)
-                    ),
+                        borderRadius: BorderRadius.circular(25.7),
+                        side: BorderSide(color: Colors.deepOrangeAccent)),
                   ),
                   FlatButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => UserRegister())
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserRegister()));
                     },
-                    child: Text(
-                      "¿No tienes cuenta?",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.normal)
-                    ),
+                    child: Text("¿No tienes cuenta?",
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.normal)),
                   ),
                   FlatButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => UserResetPsswd())
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserResetPsswd()));
                     },
-                    child: Text(
-                      "¿Olvidaste tu contraseña?",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.normal)
-                    ),
+                    child: Text("¿Olvidaste tu contraseña?",
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.normal)),
                   ),
                   Center(
                     child: SizedBox(
@@ -213,5 +207,6 @@ Future<Token> getToken(String username, String password) async {
 addStringToSF(token) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //print('AHORA AQUI, ${token}');
+  prefs.reload();
   prefs.setString('token', token);
 }

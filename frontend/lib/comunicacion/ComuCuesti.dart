@@ -9,14 +9,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:frontend/autoestima/AutoPage.dart';
+import 'package:frontend/comunicacion/ComuPage.dart';
 
-class AutoCuestiPage extends StatefulWidget {
+class ComuCuestiPage extends StatefulWidget {
   @override
-  _AutoCuestiPageState createState() => _AutoCuestiPageState();
+  _ComuCuestiPageState createState() => _ComuCuestiPageState();
 }
 
-class _AutoCuestiPageState extends State<AutoCuestiPage> {
+class _ComuCuestiPageState extends State<ComuCuestiPage> {
   int _currentIndex = 0;
   double _currentSliderValue = 1;
   String _flag = "";
@@ -31,6 +31,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   String q8 = "";
   String q9 = "";
   String q10 = "";
+  String q11 = "";
+  String q12 = "";
 
   List<Map<dynamic, dynamic>> answers = [];
 
@@ -44,6 +46,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   final ques8Controller = TextEditingController();
   final ques9Controller = TextEditingController();
   final ques10Controller = TextEditingController();
+  final ques11Controller = TextEditingController();
+  final ques12Controller = TextEditingController();
 
   final Map<int, dynamic> _answer = {};
 
@@ -56,11 +60,11 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
     //Return String
     String token = prefs.getString('token');
     print('Que peces, $token');
-    final request = await http
-        .get('https://megap115.herokuapp.com/retos/auto_estima/', headers: {
-      'Authorization': 'TOKEN $token',
-      'Content-Type': 'application/json',
-    });
+    final request = await http.get(
+        'https://megap115.herokuapp.com/retos/comunicacion_efectiva/',
+        headers: {
+          'Authorization': 'TOKEN $token',
+        });
     if (request.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
@@ -76,6 +80,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
         q8 = map["p8"];
         q9 = map["p9"];
         q10 = map["p10"];
+        q11 = map["p11"];
+        q12 = map["p12"];
       });
       //print(q1);
       //print(map["p1"]);
@@ -88,7 +94,7 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("QUIZ AUTOESTIMA"),
+          title: Text("QUIZ COMUNICACIÓN EFECTIVA"),
           elevation: 0,
           backgroundColor: Colors.tealAccent[700],
         ),
@@ -225,7 +231,7 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
       print(jsonEncode(answers));
       putAnswers(answers);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AutoPage()));
+          context, MaterialPageRoute(builder: (context) => ComuPage()));
     }
   }
 

@@ -6,16 +6,15 @@ import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
 
-import 'package:frontend/autoestima/BretoOne.dart';
-import 'package:frontend/autoestima/BretoTwo.dart';
-import 'package:frontend/autoestima/BretoThree.dart';
+import 'package:frontend/autoestima/AutoOneRetos.dart';
+import 'package:frontend/autoestima/AutoTwoRetos.dart';
 
-class AutoTwoRetosPage extends StatefulWidget {
+class ComuPage extends StatefulWidget {
   @override
-  _AutoTwoRetosPageState createState() => _AutoTwoRetosPageState();
+  _ComuPageState createState() => _ComuPageState();
 }
 
-class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
+class _ComuPageState extends State<ComuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,12 +36,16 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
       body: Stack(
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height * 0.30,
+            height: MediaQuery.of(context).size.height * 0.43,
             width: MediaQuery.of(context).size.width,
             color: Color(0xffc7b8f5),
             child: Container(
               margin: EdgeInsets.only(right: 40, top: 20, bottom: 20),
               alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/path.png'),
+                      fit: BoxFit.contain)),
             ),
           ),
           Column(
@@ -59,10 +62,13 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                         Container(
                           padding: EdgeInsets.only(left: 20, right: 20),
                           child: Text(
-                            'Retos',
+                            'Inteligencia Emocional',
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.w700),
                           ),
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         Row(
                           children: <Widget>[
@@ -73,17 +79,29 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Paremos los malos pensamientos',
+                                    'Conoce tus propias emociones',
                                     style: TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w600),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    margin: EdgeInsets.only(right: 20),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 5, horizontal: 20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(40)),
+                                    ),
+                                  )
                                 ],
                               ),
-                            ),
+                            )
                           ],
                         ),
                         SizedBox(
@@ -109,24 +127,24 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/comentario.png'))),
+                                            'assets/images/meditacion.png'))),
                               ),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      'Reto 1',
+                                      'Plan 1',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Identifica tus pensamientos',
+                                      'Autoconsciencia',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -136,7 +154,7 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              BRetoOnePage()));
+                                              AutoOneRetosPage()));
                                 },
                                 icon: Icon(
                                   Icons.next_plan,
@@ -170,24 +188,24 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/brumoso.png'))),
+                                            'assets/images/calma.png'))),
                               ),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      'Reto 2',
+                                      'Plan 2',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Entiendete primero a ti',
+                                      'Automanejo',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -197,7 +215,7 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              BRetoTwoPage()));
+                                              AutoTwoRetosPage()));
                                 },
                                 icon: Icon(
                                   Icons.next_plan,
@@ -231,43 +249,111 @@ class _AutoTwoRetosPageState extends State<AutoTwoRetosPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/yoga.png'))),
+                                            'assets/images/risa.png'))),
                               ),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      'Reto 3',
+                                      'Plan 3',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Enfocate en pensamientos positivos',
+                                      'Conciencia Social',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
                               IconButton(
                                 onPressed: () {
+                                  /*
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              BRetoThreePage()));
+                                              AutoTwoRetosPage()));
+                                              */
                                 },
                                 icon: Icon(
-                                  Icons.next_plan,
+                                  Icons.lock,
                                   size: 30,
                                   color: Colors.black,
                                 ),
                               )
                             ],
                           ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/amistad.png'))),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Plan 4',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Manejo de Relaciones',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  /*
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AutoTwoRetosPage()));
+                                              */
+                                },
+                                icon: Icon(
+                                  Icons.lock,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
                         ),
                       ],
                     ),

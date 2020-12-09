@@ -140,7 +140,7 @@ class _EmoPageState extends State<EmoPage> {
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Afirmar el valor propio',
+                                      'Autoconsciencia',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
@@ -188,7 +188,7 @@ class _EmoPageState extends State<EmoPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/pensar-en-negativo.png'))),
+                                            'assets/images/calma.png'))),
                               ),
                               Expanded(
                                 child: Column(
@@ -201,7 +201,7 @@ class _EmoPageState extends State<EmoPage> {
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Parar malos pensamientos',
+                                      'Automanejo',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
@@ -249,7 +249,7 @@ class _EmoPageState extends State<EmoPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/happy-thoughts.png'))),
+                                            'assets/images/risa.png'))),
                               ),
                               Expanded(
                                 child: Column(
@@ -262,7 +262,7 @@ class _EmoPageState extends State<EmoPage> {
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Dialogo Interno Positivo',
+                                      'Conciencia Social',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
@@ -312,7 +312,7 @@ class _EmoPageState extends State<EmoPage> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/equilibrar.png'))),
+                                            'assets/images/amistad.png'))),
                               ),
                               Expanded(
                                 child: Column(
@@ -325,7 +325,7 @@ class _EmoPageState extends State<EmoPage> {
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
-                                      'Mood Tracker',
+                                      'Manejo de Relaciones',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),

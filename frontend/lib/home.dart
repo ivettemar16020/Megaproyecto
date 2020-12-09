@@ -11,8 +11,12 @@ import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
 import 'package:frontend/autoestima/IntroAuto.dart';
-
 import 'package:frontend/iemocional/IntroEmo.dart';
+import 'package:frontend/iemocional/EmoPage.dart';
+import 'package:frontend/comunicacion/IntroComu.dart';
+
+String _name = '';
+String _email = '';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -22,35 +26,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Color backcolor = HexColor("#F4F1E9");
-  String name = '';
-  String email = '';
   @override
   void initState() {
-    /*
-    getStringValuesSF().then((value){
-      print('Retrieved information from token');
-    });
     super.initState();
-    */
     getStringValuesSF();
-    setName().then((value) {
-      setState(() {
-        name = value;
-      });
-    });
-
-    setEmail().then((value) {
-      setState(() {
-        email = value;
-      });
-    });
-
-    super.initState();
+    _setName();
+    print(_name);
+    _setEmail();
   }
 
+  _setName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    setState(() {
+      _name = prefs.getString('name');
+    });
+  }
+
+  _setEmail() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    setState(() {
+      _email = prefs.getString('email');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backcolor,
       body: Stack(
         children: <Widget>[
           Container(
@@ -76,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          name,
+                          _name,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,
@@ -88,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               SizedBox(width: 2),
                               Text(
-                                email,
+                                _email,
                                 style: TextStyle(
                                   color: Colors.white60,
                                   fontSize: 16,
@@ -118,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Column(
                           children: <Widget>[
                             Text(
-                              "0",
+                              "40",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
@@ -266,7 +269,11 @@ class _MyHomePageState extends State<MyHomePage> {
           }
           if (title == "Inteligencia Emocional") {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => IntroEmo()));
+                context, MaterialPageRoute(builder: (context) => EmoPage()));
+          }
+          if (title == "Comunicación Efectiva") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => IntroComu()));
           }
         },
         child: Column(
@@ -326,6 +333,7 @@ class HexColor extends Color {
 getStringValuesSF() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //Return String
+  prefs.reload();
   String token = prefs.getString('token');
   print('Que peces, $token');
   final request =
@@ -352,18 +360,4 @@ addValuesToSF(name, email) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('name', name);
   prefs.setString('email', email);
-}
-
-setName() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  //Return String
-  String name = prefs.getString('name');
-  return name;
-}
-
-setEmail() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  //Return String
-  String email = prefs.getString('email');
-  return email;
 }
