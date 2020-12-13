@@ -60,23 +60,49 @@ class _BRetoOnePageState extends State<BRetoOnePage> {
                 ],
               ),
               SizedBox(height: 50.0),
-              Text(
-                "Tus pensamientos",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              Text('Tus pensamientos',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  )),
+              SizedBox(height: 25.0),
               Card(
                 child:
                     Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   Text(
-                      "Todos tenemos pensamientos que nos hacen sentir mal y por ellos no reconocemos nuestros logros o no nos dejan progresar"),
+                      "Todos tenemos pensamientos que nos hacen sentir mal y por ellos no reconocemos nuestros logros o no nos dejan progresar",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black,
+                      )),
                   SizedBox(height: 25.0),
                   Text(
-                      "Esta es una técnica para poder dejar esos pensamientos atrás"),
+                      "Esta es una técnica para poder dejar esos pensamientos atrás",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black,
+                      )),
                   SizedBox(height: 25.0),
                   Text(
-                      "Escribe tus malos pensamientos, tus pensamientos negativos"),
+                      "Escribe tus malos pensamientos, tus pensamientos negativos",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      )),
                   TextField(
                     controller: myController1,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: '¿Qué piensas?',
+                    ),
                   ),
                   SizedBox(height: 15.0),
                 ]),

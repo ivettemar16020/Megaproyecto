@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -56,15 +57,26 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
     //Return String
     String token = prefs.getString('token');
     print('Que peces, $token');
-    final request = await http
-        .get('https://megap115.herokuapp.com/retos/auto_estima/', headers: {
-      'Authorization': 'TOKEN $token',
-      'Content-Type': 'application/json',
-    });
-    if (request.statusCode == 200) {
+
+    var headers = {
+      'Authorization': 'TOKEN 2d1ae508ec333f6efdd5beb291b1f9f45d2829bd',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
+    request.fields.addAll({'titulo': 'Autoestima'});
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    print('---- status code: ${response.statusCode}');
+    print('---- info: ${respStr}');
+
+    if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      Map<String, dynamic> map = json.decode(request.body);
+      Map<String, dynamic> map = json.decode(respStr);
       setState(() {
         q1 = map["p1"];
         q2 = map["p2"];
@@ -77,8 +89,6 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
         q9 = map["p9"];
         q10 = map["p10"];
       });
-      //print(q1);
-      //print(map["p1"]);
     }
   }
 

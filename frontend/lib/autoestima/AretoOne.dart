@@ -70,29 +70,55 @@ class _RetoOnePageState extends State<RetoOnePage> {
                 ],
               ),
               SizedBox(height: 50.0),
-              Text("Escribe 5 cualidades que te identifiquen"),
+              Text("Escribe 5 cualidades que te identifiquen",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurpleAccent,
+                  )),
               Card(
                 child:
                     Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   SizedBox(height: 15.0),
                   TextField(
                     controller: myController1,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Ingresa una característica',
+                    ),
                   ),
                   SizedBox(height: 15.0),
                   TextField(
                     controller: myController2,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Ingresa una característica',
+                    ),
                   ),
                   SizedBox(height: 15.0),
                   TextField(
                     controller: myController3,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Ingresa una característica',
+                    ),
                   ),
                   SizedBox(height: 15.0),
                   TextField(
                     controller: myController4,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Ingresa una característica',
+                    ),
                   ),
                   SizedBox(height: 15.0),
                   TextField(
                     controller: myController5,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Ingresa una característica',
+                    ),
                   ),
                 ]),
               ),
@@ -107,7 +133,8 @@ class _RetoOnePageState extends State<RetoOnePage> {
                     child: Text(
                       "Enviar respuestas",
                       style: MediaQuery.of(context).size.width > 800
-                          ? TextStyle(fontSize: 30.0)
+                          ? TextStyle(
+                              fontSize: 30.0, color: Colors.deepPurpleAccent)
                           : null,
                     ),
                     onPressed: () {

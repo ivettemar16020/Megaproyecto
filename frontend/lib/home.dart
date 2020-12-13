@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/iemocional/EmoCuesti.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +15,7 @@ import 'package:frontend/autoestima/IntroAuto.dart';
 import 'package:frontend/iemocional/IntroEmo.dart';
 import 'package:frontend/iemocional/EmoPage.dart';
 import 'package:frontend/comunicacion/IntroComu.dart';
+import 'package:frontend/no/IntroNo.dart';
 
 String _name = '';
 String _email = '';
@@ -269,11 +271,15 @@ class _MyHomePageState extends State<MyHomePage> {
           }
           if (title == "Inteligencia Emocional") {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => EmoPage()));
+                context, MaterialPageRoute(builder: (context) => IntroEmo()));
           }
           if (title == "Comunicación Efectiva") {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => IntroComu()));
+          }
+          if (title == "¿Cómo decir que no?") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => IntroNo()));
           }
         },
         child: Column(

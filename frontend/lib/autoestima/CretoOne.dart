@@ -16,6 +16,12 @@ class CRetoOnePage extends StatefulWidget {
 class _CRetoOnePageState extends State<CRetoOnePage> {
   final myController1 = TextEditingController();
   final myController2 = TextEditingController();
+  int _value = 1;
+  final elements1 = [
+    "Intentar un nuevo corte de cabello",
+    "Practicar un deporte nuevo",
+    "Aprender un nuevo instrumento",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,19 +69,64 @@ class _CRetoOnePageState extends State<CRetoOnePage> {
               ),
               SizedBox(height: 50.0),
               Text(
-                  "Muchas veces, por pensar mal de nosotros mismos dejamos pasar oportunidades que nos podrían traer alegrías y nuevas experiencias. Nuestros pensamientos y lo que nos decimos a nosotros mismos nos detienen y asustan, y muchas veces, estos pensamientos no son verdad"),
+                  "Muchas veces, por pensar mal de nosotros mismos dejamos pasar oportunidades que nos podrían traer alegrías y nuevas experiencias. Nuestros pensamientos y lo que nos decimos a nosotros mismos nos detienen y asustan, y muchas veces, estos pensamientos no son verdad",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  )),
+              SizedBox(height: 15.0),
               Card(
                 child:
                     Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   Text(
-                      "Tal y como dicen, ‘el que no arriesga no gana’, así que piensa en estos escenarios y escribe el peor escenario posible y el mejor escenario posible"),
+                      "Tal y como dicen, ‘el que no arriesga no gana’, así que piensa en estos escenarios y escribe el peor escenario posible y el mejor escenario posible",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      )),
+                  DropdownButton(
+                      value: _value,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text("Intentar un nuevo corte de cabello"),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text("Practicar un deporte nuevo"),
+                          value: 2,
+                        ),
+                        DropdownMenuItem(
+                            child: Text("Aprender un nuevo instrumento"),
+                            value: 3),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      }),
                   SizedBox(height: 15.0),
-                  Text("Peor escenario posible:"),
+                  Text("Peor escenario posible:",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      )),
                   TextField(
                     controller: myController1,
                   ),
                   SizedBox(height: 15.0),
-                  Text("Mejor escenario posible:"),
+                  Text("Mejor escenario posible:",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      )),
                   TextField(
                     controller: myController2,
                   ),

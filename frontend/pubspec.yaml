@@ -99,6 +99,7 @@ flutter:
     - assets/images/comunicacion.png
     - assets/images/no.png
     - assets/images/faq.png
+    - assets/images/shiba.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

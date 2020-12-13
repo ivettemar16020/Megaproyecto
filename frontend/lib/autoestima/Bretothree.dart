@@ -63,12 +63,19 @@ class _BRetoThreePageState extends State<BRetoThreePage> {
               SizedBox(height: 20.0),
               Text(
                 "Esta es una técnica para crear un sobresalto, de esta forma el pensamiento ya no está presente en la mente. Puedes practicar esto en este módulo o realizarlo tú mismo. También puedes, en vez de sonar una alarma, aplaudir, gritar, saltar, algo que te saque de ese pensamiento y concentrarte en algo agradable.",
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
               ),
+              SizedBox(height: 10.0),
               Container(
                   height: 300,
                   child: Card(
                     child: Image.asset(
-                      'assets/images/smilee.jpg',
+                      'assets/images/shiba.jpg',
                       fit: BoxFit.cover,
                     ),
                   )),

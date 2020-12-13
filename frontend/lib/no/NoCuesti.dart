@@ -9,14 +9,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:frontend/comunicacion/ComuPage.dart';
+import 'package:frontend/iemocional/EmoPage.dart';
 
-class ComuCuestiPage extends StatefulWidget {
+class NoCuestiPage extends StatefulWidget {
   @override
-  _ComuCuestiPageState createState() => _ComuCuestiPageState();
+  _NoCuestiPageState createState() => _NoCuestiPageState();
 }
 
-class _ComuCuestiPageState extends State<ComuCuestiPage> {
+class _NoCuestiPageState extends State<NoCuestiPage> {
   int _currentIndex = 0;
   double _currentSliderValue = 1;
   String _flag = "";
@@ -65,7 +65,7 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
     };
     var request = http.MultipartRequest(
         'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
-    request.fields.addAll({'titulo': 'Comunicación Efectiva'});
+    request.fields.addAll({'titulo': 'Como decir que no'});
 
     request.headers.addAll(headers);
 
@@ -74,7 +74,6 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
 
     print('---- status code: ${response.statusCode}');
     print('---- info: ${respStr}');
-
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
@@ -104,9 +103,9 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("QUIZ COMUNICACIÓN EFECTIVA"),
+          title: Text("Test ¿Cómo decir que no?"),
           elevation: 0,
-          backgroundColor: Colors.amberAccent[700],
+          backgroundColor: Colors.redAccent,
         ),
         body: Stack(
           children: <Widget>[
@@ -114,7 +113,7 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
               clipper: WaveClipperTwo(),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.amberAccent[700],
+                  color: Colors.redAccent,
                 ),
                 height: 200,
               ),
@@ -155,7 +154,14 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
                                                                           1) ==
                                                                       10
                                                                   ? "$q10"
-                                                                  : "Error",
+                                                                  : (_currentIndex +
+                                                                              1) ==
+                                                                          11
+                                                                      ? "$q11"
+                                                                      : (_currentIndex + 1) ==
+                                                                              12
+                                                                          ? "$q12"
+                                                                          : "Error",
                           style: TextStyle(
                               height: 1.5,
                               fontSize: 20,
@@ -168,8 +174,8 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
                   child:
                       Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Slider(
-                      activeColor: Colors.amberAccent[700],
-                      inactiveColor: Colors.amberAccent[100],
+                      activeColor: Colors.redAccent,
+                      inactiveColor: Colors.redAccent[100],
                       value: _currentSliderValue,
                       min: 1,
                       max: 4,
@@ -230,7 +236,7 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
       'r${_currentIndex + 1}': _currentSliderValue.toInt()
     };
     print(myCurttentAnsw);
-    if (_currentIndex < 9) {
+    if (_currentIndex < 11) {
       setState(() {
         _currentIndex++;
         _flag = "q$_currentIndex";
@@ -241,7 +247,7 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
       print(jsonEncode(answers));
       putAnswers(answers);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ComuPage()));
+          context, MaterialPageRoute(builder: (context) => EmoPage()));
     }
   }
 
@@ -278,7 +284,7 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
 
     print('Que peces, $token');
     final request = await http.put(
-      'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
+      'https://megap115.herokuapp.com/retos/pec_realizado/',
       headers: {
         'Authorization': 'TOKEN $token',
       },
@@ -296,11 +302,10 @@ class _ComuCuestiPageState extends State<ComuCuestiPage> {
     String token = prefs.getString('token');
 
     print('Que peces, $token');
-    final request = await http.get(
-        'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
-        headers: {
-          'Authorization': 'TOKEN $token',
-        });
+    final request = await http
+        .get('https://megap115.herokuapp.com/retos/pec_realizado/', headers: {
+      'Authorization': 'TOKEN $token',
+    });
     if (request.statusCode == 200) {
       print(request.body);
     }

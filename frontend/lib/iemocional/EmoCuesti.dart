@@ -136,14 +136,24 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
     //Return String
     String token = prefs.getString('token');
     print('Que peces, $token');
-    final request =
-        await http.get('https://megap115.herokuapp.com/retos/pec/', headers: {
-      'Authorization': 'TOKEN $token',
-    });
-    if (request.statusCode == 200) {
+    var headers = {
+      'Authorization': 'TOKEN 2d1ae508ec333f6efdd5beb291b1f9f45d2829bd',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
+    request.fields.addAll({'titulo': 'Comunicación Efectiva'});
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    print('---- status code: ${response.statusCode}');
+    print('---- info: ${respStr}');
+    if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      Map<String, dynamic> map = json.decode(request.body);
+      Map<String, dynamic> map = json.decode(respStr);
       setState(() {
         q1 = map["p1"];
         q2 = map["p2"];
@@ -209,7 +219,7 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
         appBar: AppBar(
           title: Text("Test Inteligencia Emocional"),
           elevation: 0,
-          backgroundColor: Colors.tealAccent[700],
+          backgroundColor: Colors.teal[700],
         ),
         body: Stack(
           children: <Widget>[
@@ -217,7 +227,7 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
               clipper: WaveClipperTwo(),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.tealAccent[700],
+                  color: Colors.teal[700],
                 ),
                 height: 200,
               ),
@@ -342,7 +352,7 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
                                                                                                                                                                                                                               : (_currentIndex + 1) == 50
                                                                                                                                                                                                                                   ? "$q50"
                                                                                                                                                                                                                                   : "Error",
-                          style: TextStyle(height: 1.5, fontSize: 20, fontWeight: FontWeight.bold)),
+                          style: TextStyle(height: 1.5, fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
                   ],
                 ),
@@ -351,8 +361,8 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
                   child:
                       Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Slider(
-                      activeColor: Colors.tealAccent[700],
-                      inactiveColor: Colors.tealAccent[100],
+                      activeColor: Colors.teal[700],
+                      inactiveColor: Colors.teal[100],
                       value: _currentSliderValue,
                       min: 1,
                       max: 4,

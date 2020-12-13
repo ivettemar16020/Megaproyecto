@@ -34,24 +34,36 @@ class _RetoTwoPageState extends State<RetoTwoPage> {
   Size size;
 
   List<String> letters = [
-    'f',
+    'p',
     'e',
     's',
     'p',
-    'e',
+    'u',
     'n',
     's',
     'a',
-    'l',
+    'n',
     'l',
     'e',
     'a',
-    'i',
+    't',
+    'r',
+    'b',
+    'u',
+    'u',
     'r',
     'b',
     'z',
+    'a',
     'z',
     'r',
+    'b',
+    'l',
+    'l',
+    'z',
+    'r',
+    'l',
+    'z',
     'b',
     'z'
   ];
@@ -158,6 +170,17 @@ class _RetoTwoPageState extends State<RetoTwoPage> {
       ),
       body: Stack(
         children: <Widget>[
+          Column(
+            children: [
+              Text('Encuentra una de tus cualidades',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ))
+            ],
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
@@ -178,7 +201,7 @@ class _RetoTwoPageState extends State<RetoTwoPage> {
                             lettersMap.values.toList()[i],
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.amber,
+                              color: Colors.deepOrangeAccent,
                               fontSize: 18,
                             ),
                           ),
