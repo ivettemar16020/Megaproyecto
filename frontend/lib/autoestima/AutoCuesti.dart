@@ -33,6 +33,8 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   String q9 = "";
   String q10 = "";
 
+  String currentCuestion = "";
+
   List<Map<dynamic, dynamic>> answers = [];
 
   final ques1Controller = TextEditingController();
@@ -59,7 +61,7 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
     print('Que peces, $token');
 
     var headers = {
-      'Authorization': 'TOKEN 2d1ae508ec333f6efdd5beb291b1f9f45d2829bd',
+      'Authorization': 'TOKEN $token',
     };
     var request = http.MultipartRequest(
         'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
@@ -126,29 +128,32 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
                     Expanded(
                       child: Text(
                           (_currentIndex + 1) == 1
-                              ? "$q1"
+                              ? currentCuestion = "$q1"
                               : (_currentIndex + 1) == 2
-                                  ? "$q2"
+                                  ? currentCuestion = "$q2"
                                   : (_currentIndex + 1) == 3
-                                      ? "$q3"
+                                      ? currentCuestion = "$q3"
                                       : (_currentIndex + 1) == 4
-                                          ? "$q4"
+                                          ? currentCuestion = "$q4"
                                           : (_currentIndex + 1) == 5
-                                              ? "$q5"
+                                              ? currentCuestion = "$q5"
                                               : (_currentIndex + 1) == 6
-                                                  ? "$q6"
+                                                  ? currentCuestion = "$q6"
                                                   : (_currentIndex + 1) == 7
-                                                      ? "$q7"
+                                                      ? currentCuestion = "$q7"
                                                       : (_currentIndex + 1) == 8
-                                                          ? "$q8"
+                                                          ? currentCuestion =
+                                                              "$q8"
                                                           : (_currentIndex +
                                                                       1) ==
                                                                   9
-                                                              ? "$q9"
+                                                              ? currentCuestion =
+                                                                  "$q9"
                                                               : (_currentIndex +
                                                                           1) ==
                                                                       10
-                                                                  ? "$q10"
+                                                                  ? currentCuestion =
+                                                                      "$q10"
                                                                   : "Error",
                           style: TextStyle(
                               height: 1.5,
@@ -221,19 +226,21 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
 
   void _nextSubmit() {
     Map<dynamic, dynamic> myCurttentAnsw = {
-      'r${_currentIndex + 1}': _currentSliderValue.toInt()
+      //'r${_currentIndex + 1}': _currentSliderValue.toInt()
+      'respuesta': '${_currentSliderValue.toInt()}',
+      'pregunta': '${currentCuestion}'
     };
     print(myCurttentAnsw);
     if (_currentIndex < 9) {
       setState(() {
         _currentIndex++;
         _flag = "q$_currentIndex";
-        answers.add(myCurttentAnsw);
+        //answers.add(myCurttentAnsw);
+        postAnswers(myCurttentAnsw);
       });
-      //putAnswers(myCurttentAnsw);
     } else {
       print(jsonEncode(answers));
-      putAnswers(answers);
+      getAnswers();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AutoPage()));
     }
@@ -265,20 +272,21 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
         });
   }
 
-  putAnswers(answs) async {
+  postAnswers(answs) async {
+    print(answs);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String token = prefs.getString('token');
-
-    print('Que peces, $token');
-    final request = await http.put(
-      'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
+    final request = await http.post(
+      'https://megap115.herokuapp.com/retos/respuestas/',
       headers: {
         'Authorization': 'TOKEN $token',
       },
-      body: jsonEncode(answs),
+      body: answs,
     );
-    if (request.statusCode == 200) {
+    print(request.body);
+    print(request.statusCode);
+    if (request.statusCode == 201) {
       print(request.body);
     }
     return token;
@@ -289,14 +297,20 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
     //Return String
     String token = prefs.getString('token');
 
-    print('Que peces, $token');
-    final request = await http.get(
-        'https://megap115.herokuapp.com/retos/auto_estima_realizado/',
-        headers: {
-          'Authorization': 'TOKEN $token',
-        });
-    if (request.statusCode == 200) {
-      print(request.body);
+    var headers = {
+      'Authorization': 'TOKEN  $token',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/respuestas/'));
+    request.fields.addAll({'titulo_cuestionario': 'Autoestima'});
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    if (response.statusCode == 200) {
+      print(respStr);
     }
     return token;
   }

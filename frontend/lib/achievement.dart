@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:frontend/home.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
@@ -13,6 +17,11 @@ class AchievementPage extends StatefulWidget {
 class _AchievementPage extends State<AchievementPage> {
   Color backcolor = HexColor("#F4F1E9");
   @override
+  void initState() {
+    super.initState();
+    getAchievements();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: backcolor,
@@ -298,6 +307,30 @@ class _AchievementPage extends State<AchievementPage> {
         ),
       ),
     );
+  }
+
+  getAchievements() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String token = prefs.getString('token');
+
+    var headers = {
+      'Authorization': 'TOKEN  $token',
+    };
+    var request = http.MultipartRequest('GET',
+        Uri.parse('https://megap115.herokuapp.com/retos/insignias_usuarios/'));
+    //request.fields.addAll({'titulo_cuestionario': 'Autoestima'});
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print(respStr);
+    }
+    return token;
   }
 }
 

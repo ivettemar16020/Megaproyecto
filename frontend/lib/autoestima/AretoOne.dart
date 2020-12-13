@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:frontend/home.dart';
 import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
@@ -138,6 +142,14 @@ class _RetoOnePageState extends State<RetoOnePage> {
                           : null,
                     ),
                     onPressed: () {
+                      Map<dynamic, dynamic> myCurttentAnsw = {
+                        //'r${_currentIndex + 1}': _currentSliderValue.toInt()
+                        'name': '5 cualidades',
+                        'respuesta':
+                            '${myController1.text}, ${myController2.text}, ${myController3.text}, ${myController4.text}, ${myController5.text}'
+                      };
+                      print(myCurttentAnsw);
+                      postAnswers(myCurttentAnsw);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -151,5 +163,24 @@ class _RetoOnePageState extends State<RetoOnePage> {
         ],
       ),
     );
+  }
+
+  postAnswers(answs) async {
+    print(answs);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String token = prefs.getString('token');
+    final request = await http.post(
+      'https://megap115.herokuapp.com/retos/reto_finalizado/',
+      headers: {
+        'Authorization': 'TOKEN $token',
+      },
+      body: answs,
+    );
+    print(request.body);
+    if (request.statusCode == 201) {
+      print(request.body);
+    }
+    return token;
   }
 }
