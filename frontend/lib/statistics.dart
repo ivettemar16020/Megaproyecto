@@ -4,7 +4,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:frontend/home.dart';
 import 'package:frontend/achievement.dart';
@@ -18,6 +20,12 @@ class StatisticsPage extends StatefulWidget {
 class _StatisticsPage extends State<StatisticsPage> {
   var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
   var data1 = [0.0, -2.0, 3.5, -2.0, 0.5, 0.7, 0.8, 1.0, 2.0, 3.0, 3.2];
+
+  String rachita = "";
+
+  void initState() {
+    getDataProfile();
+  }
 
   List<CircularStackEntry> circularData = <CircularStackEntry>[
     new CircularStackEntry(
@@ -253,6 +261,34 @@ class _StatisticsPage extends State<StatisticsPage> {
   }
 
   Color backcolor = HexColor("#F4F1E9");
+
+  getDataProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String token = prefs.getString('token');
+
+    var headers = {
+      'Authorization': 'TOKEN  $token',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/profile/'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    print("get status code --> ${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(respStr);
+      setState(() {
+        rachita = map["racha"].toString();
+      });
+    }
+    return token;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -304,19 +340,20 @@ class _StatisticsPage extends State<StatisticsPage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: myCircularItems("Módulos", "Avance"),
+                child: myCircularItems("Avance", "Módulos"),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: myTextItems("Retos", "4"),
+                child: myTextItems("Racha", "$rachita"),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: myTextItems("Planes", "1"),
+                child: myTextItems("Retos", "3"),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: mychart2Items("Rachas de ingreso", "3 días", "Máximo"),
+                child: mychart2Items(
+                    "¿Cómo va tu avance?", "Planes", "Desempeño consecutivo"),
               ),
             ],
             staggeredTiles: [

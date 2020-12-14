@@ -29,10 +29,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Color backcolor = HexColor("#F4F1E9");
+  String punteo = "";
   @override
   void initState() {
     super.initState();
     getStringValuesSF();
+    getDataProfile();
   }
 
   getStringValuesSF() async {
@@ -89,6 +91,35 @@ class _MyHomePageState extends State<MyHomePage> {
       prefs.reload();
       _email = prefs.getString('email');
     });
+  }
+
+  getDataProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String token = prefs.getString('token');
+
+    var headers = {
+      'Authorization': 'TOKEN  $token',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/profile/'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    //print("get status code --> ${response.statusCode}");
+
+    //print("resp --> ${respStr}");
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(respStr);
+      setState(() {
+        punteo = map["puntos"].toString();
+      });
+    }
+    return token;
   }
 
   @override
@@ -162,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Column(
                           children: <Widget>[
                             Text(
-                              "40",
+                              "$punteo",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
