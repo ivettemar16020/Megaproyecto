@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:frontend/login.dart';
+import 'package:frontend/emotionsFinal.dart';
 import 'package:frontend/achievement.dart';
 import 'package:frontend/statistics.dart';
 import 'package:frontend/help.dart';
@@ -32,23 +33,60 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     getStringValuesSF();
-    _setName();
-    print(_name);
-    _setEmail();
+  }
+
+  getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    prefs.reload();
+    String token = prefs.getString('token');
+    print('Que peces, $token');
+    final request =
+        await http.get('https://megap115.herokuapp.com/retos/user/', headers: {
+      'Authorization': 'TOKEN $token',
+    });
+    if (request.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      List<dynamic> list = jsonDecode(request.body) as List;
+      String name = list[0]['username'];
+      String email = list[0]['email'];
+      print(name + email);
+      addValuesToSF(name, email);
+      _setName();
+      print(_name);
+      _setEmail();
+      return list;
+
+      //String userToJson(TheUser data) => json.encode(data.toJson());
+
+    }
+    return token;
+  }
+
+  addValuesToSF(name, email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.reload();
+    prefs.setString('name', name);
+    prefs.setString('email', email);
   }
 
   _setName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.reload();
     //Return String
     setState(() {
+      prefs.reload();
       _name = prefs.getString('name');
     });
   }
 
   _setEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.reload();
     //Return String
     setState(() {
+      prefs.reload();
       _email = prefs.getString('email');
     });
   }
@@ -118,7 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => UserLogin()));
+                                      builder: (context) =>
+                                          EmotionsFinalePage()));
                             }),
                         Column(
                           children: <Widget>[
@@ -334,36 +373,4 @@ class HexColor extends Color {
   }
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-}
-
-getStringValuesSF() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  //Return String
-  prefs.reload();
-  String token = prefs.getString('token');
-  print('Que peces, $token');
-  final request =
-      await http.get('https://megap115.herokuapp.com/retos/user/', headers: {
-    'Authorization': 'TOKEN $token',
-  });
-  if (request.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    List<dynamic> list = jsonDecode(request.body) as List;
-    String name = list[0]['username'];
-    String email = list[0]['email'];
-    print(name + email);
-    addValuesToSF(name, email);
-    return list;
-
-    //String userToJson(TheUser data) => json.encode(data.toJson());
-
-  }
-  return token;
-}
-
-addValuesToSF(name, email) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('name', name);
-  prefs.setString('email', email);
 }

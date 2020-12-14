@@ -34,6 +34,8 @@ class _NoCuestiPageState extends State<NoCuestiPage> {
   String q11 = "";
   String q12 = "";
 
+  String currentCuestion = "";
+
   List<Map<dynamic, dynamic>> answers = [];
 
   final ques1Controller = TextEditingController();
@@ -131,36 +133,41 @@ class _NoCuestiPageState extends State<NoCuestiPage> {
                     Expanded(
                       child: Text(
                           (_currentIndex + 1) == 1
-                              ? "$q1"
+                              ? currentCuestion = "$q1"
                               : (_currentIndex + 1) == 2
-                                  ? "$q2"
+                                  ? currentCuestion = "$q2"
                                   : (_currentIndex + 1) == 3
-                                      ? "$q3"
+                                      ? currentCuestion = "$q3"
                                       : (_currentIndex + 1) == 4
-                                          ? "$q4"
+                                          ? currentCuestion = "$q4"
                                           : (_currentIndex + 1) == 5
-                                              ? "$q5"
+                                              ? currentCuestion = "$q5"
                                               : (_currentIndex + 1) == 6
-                                                  ? "$q6"
+                                                  ? currentCuestion = "$q6"
                                                   : (_currentIndex + 1) == 7
-                                                      ? "$q7"
+                                                      ? currentCuestion = "$q7"
                                                       : (_currentIndex + 1) == 8
-                                                          ? "$q8"
+                                                          ? currentCuestion =
+                                                              "$q8"
                                                           : (_currentIndex +
                                                                       1) ==
                                                                   9
-                                                              ? "$q9"
+                                                              ? currentCuestion =
+                                                                  "$q9"
                                                               : (_currentIndex +
                                                                           1) ==
                                                                       10
-                                                                  ? "$q10"
+                                                                  ? currentCuestion =
+                                                                      "$q10"
                                                                   : (_currentIndex +
                                                                               1) ==
                                                                           11
-                                                                      ? "$q11"
+                                                                      ? currentCuestion =
+                                                                          "$q11"
                                                                       : (_currentIndex + 1) ==
                                                                               12
-                                                                          ? "$q12"
+                                                                          ? currentCuestion =
+                                                                              "$q12"
                                                                           : "Error",
                           style: TextStyle(
                               height: 1.5,
@@ -233,19 +240,22 @@ class _NoCuestiPageState extends State<NoCuestiPage> {
 
   void _nextSubmit() {
     Map<dynamic, dynamic> myCurttentAnsw = {
-      'r${_currentIndex + 1}': _currentSliderValue.toInt()
+      //'r${_currentIndex + 1}': _currentSliderValue.toInt()
+      'respuesta': '${_currentSliderValue.toInt()}',
+      'pregunta': '${currentCuestion}'
     };
     print(myCurttentAnsw);
     if (_currentIndex < 11) {
       setState(() {
         _currentIndex++;
         _flag = "q$_currentIndex";
-        answers.add(myCurttentAnsw);
+        //answers.add(myCurttentAnsw);
+        postAnswers(myCurttentAnsw);
       });
       //putAnswers(myCurttentAnsw);
     } else {
       print(jsonEncode(answers));
-      putAnswers(answers);
+      getAnswers();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => EmoPage()));
     }
@@ -277,20 +287,21 @@ class _NoCuestiPageState extends State<NoCuestiPage> {
         });
   }
 
-  putAnswers(answs) async {
+  postAnswers(answs) async {
+    print(answs);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String token = prefs.getString('token');
-
-    print('Que peces, $token');
-    final request = await http.put(
-      'https://megap115.herokuapp.com/retos/pec_realizado/',
+    final request = await http.post(
+      'https://megap115.herokuapp.com/retos/respuestas/',
       headers: {
         'Authorization': 'TOKEN $token',
       },
-      body: jsonEncode(answs),
+      body: answs,
     );
-    if (request.statusCode == 200) {
+    print(request.body);
+    print(request.statusCode);
+    if (request.statusCode == 201) {
       print(request.body);
     }
     return token;
@@ -301,13 +312,22 @@ class _NoCuestiPageState extends State<NoCuestiPage> {
     //Return String
     String token = prefs.getString('token');
 
-    print('Que peces, $token');
-    final request = await http
-        .get('https://megap115.herokuapp.com/retos/pec_realizado/', headers: {
-      'Authorization': 'TOKEN $token',
-    });
-    if (request.statusCode == 200) {
-      print(request.body);
+    var headers = {
+      'Authorization': 'TOKEN  $token',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
+    request.fields.addAll({'titulo_cuestionario': 'Como decir que no'});
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    print("get status code --> ${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      print(respStr);
     }
     return token;
   }

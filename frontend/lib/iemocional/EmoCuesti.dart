@@ -72,6 +72,8 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
   String q49 = "";
   String q50 = "";
 
+  String currentCuestion = "";
+
   List<Map<dynamic, dynamic>> answers = [];
 
   final ques1Controller = TextEditingController();
@@ -141,7 +143,7 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
     };
     var request = http.MultipartRequest(
         'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
-    request.fields.addAll({'titulo': 'Comunicación Efectiva'});
+    request.fields.addAll({'titulo': 'Inteligencia Emocional'});
 
     request.headers.addAll(headers);
 
@@ -245,112 +247,116 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
                     Expanded(
                       child: Text(
                           (_currentIndex + 1) == 1
-                              ? "$q1"
+                              ? currentCuestion = "$q1"
                               : (_currentIndex + 1) == 2
-                                  ? "$q2"
+                                  ? currentCuestion = "$q2"
                                   : (_currentIndex + 1) == 3
-                                      ? "$q3"
+                                      ? currentCuestion = "$q3"
                                       : (_currentIndex + 1) == 4
-                                          ? "$q4"
+                                          ? currentCuestion = "$q4"
                                           : (_currentIndex + 1) == 5
-                                              ? "$q5"
+                                              ? currentCuestion = "$q5"
                                               : (_currentIndex + 1) == 6
-                                                  ? "$q6"
+                                                  ? currentCuestion = "$q6"
                                                   : (_currentIndex + 1) == 7
-                                                      ? "$q7"
+                                                      ? currentCuestion = "$q7"
                                                       : (_currentIndex + 1) == 8
-                                                          ? "$q8"
+                                                          ? currentCuestion =
+                                                              "$q8"
                                                           : (_currentIndex +
                                                                       1) ==
                                                                   9
-                                                              ? "$q9"
+                                                              ? currentCuestion =
+                                                                  "$q9"
                                                               : (_currentIndex +
                                                                           1) ==
                                                                       10
-                                                                  ? "$q10"
-                                                                  : (_currentIndex +
-                                                                              1) ==
+                                                                  ? currentCuestion =
+                                                                      "$q10"
+                                                                  : (_currentIndex + 1) ==
                                                                           11
-                                                                      ? "$q11"
+                                                                      ? currentCuestion =
+                                                                          "$q11"
                                                                       : (_currentIndex + 1) ==
                                                                               12
-                                                                          ? "$q12"
+                                                                          ? currentCuestion =
+                                                                              "$q12"
                                                                           : (_currentIndex + 1) == 13
-                                                                              ? "$q13"
+                                                                              ? currentCuestion = "$q13"
                                                                               : (_currentIndex + 1) == 14
-                                                                                  ? "$q14"
+                                                                                  ? currentCuestion = "$q14"
                                                                                   : (_currentIndex + 1) == 15
-                                                                                      ? "$q15"
+                                                                                      ? currentCuestion = "$q15"
                                                                                       : (_currentIndex + 1) == 16
-                                                                                          ? "$q16"
+                                                                                          ? currentCuestion = "$q16"
                                                                                           : (_currentIndex + 1) == 17
-                                                                                              ? "$q17"
+                                                                                              ? currentCuestion = "$q17"
                                                                                               : (_currentIndex + 1) == 18
-                                                                                                  ? "$q18"
+                                                                                                  ? currentCuestion = "$q18"
                                                                                                   : (_currentIndex + 1) == 19
-                                                                                                      ? "$q19"
+                                                                                                      ? currentCuestion = "$q19"
                                                                                                       : (_currentIndex + 1) == 20
-                                                                                                          ? "$q20"
+                                                                                                          ? currentCuestion = "$q20"
                                                                                                           : (_currentIndex + 1) == 21
-                                                                                                              ? "$q21"
+                                                                                                              ? currentCuestion = "$q21"
                                                                                                               : (_currentIndex + 1) == 22
-                                                                                                                  ? "$q22"
+                                                                                                                  ? currentCuestion = "$q22"
                                                                                                                   : (_currentIndex + 1) == 23
-                                                                                                                      ? "$q23"
+                                                                                                                      ? currentCuestion = "$q23"
                                                                                                                       : (_currentIndex + 1) == 24
-                                                                                                                          ? "$q24"
+                                                                                                                          ? currentCuestion = "$q24"
                                                                                                                           : (_currentIndex + 1) == 25
-                                                                                                                              ? "$q25"
+                                                                                                                              ? currentCuestion = "$q25"
                                                                                                                               : (_currentIndex + 1) == 26
-                                                                                                                                  ? "$q26"
+                                                                                                                                  ? currentCuestion = "$q26"
                                                                                                                                   : (_currentIndex + 1) == 27
-                                                                                                                                      ? "$q27"
+                                                                                                                                      ? currentCuestion = "$q27"
                                                                                                                                       : (_currentIndex + 1) == 28
-                                                                                                                                          ? "$q28"
+                                                                                                                                          ? currentCuestion = "$q28"
                                                                                                                                           : (_currentIndex + 1) == 29
-                                                                                                                                              ? "$q29"
+                                                                                                                                              ? currentCuestion = "$q29"
                                                                                                                                               : (_currentIndex + 1) == 30
-                                                                                                                                                  ? "$q30"
+                                                                                                                                                  ? currentCuestion = "$q30"
                                                                                                                                                   : (_currentIndex + 1) == 31
-                                                                                                                                                      ? "$q31"
+                                                                                                                                                      ? currentCuestion = "$q31"
                                                                                                                                                       : (_currentIndex + 1) == 32
-                                                                                                                                                          ? "$q32"
+                                                                                                                                                          ? currentCuestion = "$q32"
                                                                                                                                                           : (_currentIndex + 1) == 33
-                                                                                                                                                              ? "$q33"
+                                                                                                                                                              ? currentCuestion = "$q33"
                                                                                                                                                               : (_currentIndex + 1) == 34
-                                                                                                                                                                  ? "$q34"
+                                                                                                                                                                  ? currentCuestion = "$q34"
                                                                                                                                                                   : (_currentIndex + 1) == 35
-                                                                                                                                                                      ? "$q35"
+                                                                                                                                                                      ? currentCuestion = "$q35"
                                                                                                                                                                       : (_currentIndex + 1) == 36
-                                                                                                                                                                          ? "$q36"
+                                                                                                                                                                          ? currentCuestion = "$q36"
                                                                                                                                                                           : (_currentIndex + 1) == 37
-                                                                                                                                                                              ? "$q37"
+                                                                                                                                                                              ? currentCuestion = "$q37"
                                                                                                                                                                               : (_currentIndex + 1) == 38
-                                                                                                                                                                                  ? "$q38"
+                                                                                                                                                                                  ? currentCuestion = "$q38"
                                                                                                                                                                                   : (_currentIndex + 1) == 39
-                                                                                                                                                                                      ? "$q39"
+                                                                                                                                                                                      ? currentCuestion = "$q39"
                                                                                                                                                                                       : (_currentIndex + 1) == 40
-                                                                                                                                                                                          ? "$q40"
+                                                                                                                                                                                          ? currentCuestion = "$q40"
                                                                                                                                                                                           : (_currentIndex + 1) == 41
-                                                                                                                                                                                              ? "$q41"
+                                                                                                                                                                                              ? currentCuestion = "$q41"
                                                                                                                                                                                               : (_currentIndex + 1) == 42
-                                                                                                                                                                                                  ? "$q42"
+                                                                                                                                                                                                  ? currentCuestion = "$q42"
                                                                                                                                                                                                   : (_currentIndex + 1) == 43
-                                                                                                                                                                                                      ? "$q43"
+                                                                                                                                                                                                      ? currentCuestion = "$q43"
                                                                                                                                                                                                       : (_currentIndex + 1) == 44
-                                                                                                                                                                                                          ? "$q44"
+                                                                                                                                                                                                          ? currentCuestion = "$q44"
                                                                                                                                                                                                           : (_currentIndex + 1) == 45
-                                                                                                                                                                                                              ? "$q45"
+                                                                                                                                                                                                              ? currentCuestion = "$q45"
                                                                                                                                                                                                               : (_currentIndex + 1) == 46
-                                                                                                                                                                                                                  ? "$q46"
+                                                                                                                                                                                                                  ? currentCuestion = "$q46"
                                                                                                                                                                                                                   : (_currentIndex + 1) == 47
-                                                                                                                                                                                                                      ? "$q47"
+                                                                                                                                                                                                                      ? currentCuestion = "$q47"
                                                                                                                                                                                                                       : (_currentIndex + 1) == 48
-                                                                                                                                                                                                                          ? "$q48"
+                                                                                                                                                                                                                          ? currentCuestion = "$q48"
                                                                                                                                                                                                                           : (_currentIndex + 1) == 49
-                                                                                                                                                                                                                              ? "$q49"
+                                                                                                                                                                                                                              ? currentCuestion = "$q49"
                                                                                                                                                                                                                               : (_currentIndex + 1) == 50
-                                                                                                                                                                                                                                  ? "$q50"
+                                                                                                                                                                                                                                  ? currentCuestion = "$q50"
                                                                                                                                                                                                                                   : "Error",
                           style: TextStyle(height: 1.5, fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
@@ -420,19 +426,22 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
 
   void _nextSubmit() {
     Map<dynamic, dynamic> myCurttentAnsw = {
-      'r${_currentIndex + 1}': _currentSliderValue.toInt()
+      //'r${_currentIndex + 1}': _currentSliderValue.toInt()
+      'respuesta': '${_currentSliderValue.toInt()}',
+      'pregunta': '${currentCuestion}'
     };
     print(myCurttentAnsw);
     if (_currentIndex < 49) {
       setState(() {
         _currentIndex++;
         _flag = "q$_currentIndex";
-        answers.add(myCurttentAnsw);
+        //answers.add(myCurttentAnsw);
+        postAnswers(myCurttentAnsw);
       });
       //putAnswers(myCurttentAnsw);
     } else {
       print(jsonEncode(answers));
-      putAnswers(answers);
+      getAnswers();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => EmoPage()));
     }
@@ -464,20 +473,21 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
         });
   }
 
-  putAnswers(answs) async {
+  postAnswers(answs) async {
+    print(answs);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String token = prefs.getString('token');
-
-    print('Que peces, $token');
-    final request = await http.put(
-      'https://megap115.herokuapp.com/retos/pec_realizado/',
+    final request = await http.post(
+      'https://megap115.herokuapp.com/retos/respuestas/',
       headers: {
         'Authorization': 'TOKEN $token',
       },
-      body: jsonEncode(answs),
+      body: answs,
     );
-    if (request.statusCode == 200) {
+    print(request.body);
+    print(request.statusCode);
+    if (request.statusCode == 201) {
       print(request.body);
     }
     return token;
@@ -488,13 +498,22 @@ class _EmoCuestiPageState extends State<EmoCuestiPage> {
     //Return String
     String token = prefs.getString('token');
 
-    print('Que peces, $token');
-    final request = await http
-        .get('https://megap115.herokuapp.com/retos/pec_realizado/', headers: {
-      'Authorization': 'TOKEN $token',
-    });
-    if (request.statusCode == 200) {
-      print(request.body);
+    var headers = {
+      'Authorization': 'TOKEN  $token',
+    };
+    var request = http.MultipartRequest(
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
+    request.fields.addAll({'titulo_cuestionario': 'Inteligencia Emocional'});
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    final respStr = await response.stream.bytesToString();
+
+    print("get status code --> ${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      print(respStr);
     }
     return token;
   }

@@ -48,8 +48,6 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
   final ques9Controller = TextEditingController();
   final ques10Controller = TextEditingController();
 
-  final Map<int, dynamic> _answer = {};
-
   void initState() {
     _getCuesAuto();
   }
@@ -301,13 +299,15 @@ class _AutoCuestiPageState extends State<AutoCuestiPage> {
       'Authorization': 'TOKEN  $token',
     };
     var request = http.MultipartRequest(
-        'GET', Uri.parse('https://megap115.herokuapp.com/retos/respuestas/'));
+        'GET', Uri.parse('https://megap115.herokuapp.com/retos/preguntas/'));
     request.fields.addAll({'titulo_cuestionario': 'Autoestima'});
 
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     final respStr = await response.stream.bytesToString();
+
+    print("get status code --> ${response.statusCode}");
 
     if (response.statusCode == 200) {
       print(respStr);

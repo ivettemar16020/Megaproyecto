@@ -318,7 +318,7 @@ class _AchievementPage extends State<AchievementPage> {
       'Authorization': 'TOKEN  $token',
     };
     var request = http.MultipartRequest('GET',
-        Uri.parse('https://megap115.herokuapp.com/retos/insignias_usuarios/'));
+        Uri.parse('https://megap115.herokuapp.com/retos/insignias_usuario/'));
     //request.fields.addAll({'titulo_cuestionario': 'Autoestima'});
 
     request.headers.addAll(headers);
@@ -326,7 +326,6 @@ class _AchievementPage extends State<AchievementPage> {
     http.StreamedResponse response = await request.send();
     final respStr = await response.stream.bytesToString();
 
-    print(response.statusCode);
     if (response.statusCode == 200) {
       print(respStr);
     }

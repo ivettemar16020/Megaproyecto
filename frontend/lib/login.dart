@@ -192,6 +192,7 @@ Future<Token> getToken(String username, String password) async {
     // then parse the JSON.
     response.body;
     Map<String, dynamic> token = jsonDecode(response.body);
+    print("new $token");
 
     addStringToSF(token['token']);
 
@@ -206,7 +207,7 @@ Future<Token> getToken(String username, String password) async {
 
 addStringToSF(token) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //print('AHORA AQUI, ${token}');
+  print('AHORA AQUI, ${token}');
   prefs.reload();
   prefs.setString('token', token);
 }

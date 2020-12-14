@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/home.dart';
+import 'package:frontend/login.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:frontend/login.dart';
-
-class EmotionsPage extends StatefulWidget {
+class EmotionsFinalePage extends StatefulWidget {
   @override
-  _EmotionsPage createState() => _EmotionsPage();
+  _EmotionsFinalePage createState() => _EmotionsFinalePage();
 }
 
-class _EmotionsPage extends State<EmotionsPage> {
+class _EmotionsFinalePage extends State<EmotionsFinalePage> {
   Color backcolor = HexColor("#F4F1E9");
 
   @override
@@ -45,7 +43,7 @@ class _EmotionsPage extends State<EmotionsPage> {
                 padding: EdgeInsets.all(10.0),
                 decoration: myBoxDecoration(),
                 child: Text(
-                  "¿Cómo te sientes \nhoy?",
+                  "¿Cómo te sientes \nahora?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 40,
@@ -111,7 +109,7 @@ class _EmotionsPage extends State<EmotionsPage> {
           print(img);
           putEmotions(img);
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyHomePage()));
+              context, MaterialPageRoute(builder: (context) => UserLogin()));
         },
         child: Column(
           children: <Widget>[
@@ -140,7 +138,7 @@ class _EmotionsPage extends State<EmotionsPage> {
     String token = prefs.getString('token');
     print("este es el token de emociones $token");
     final Map<dynamic, dynamic> emo = {
-      'emocion_inicial': emotion,
+      'emocion_final': emotion,
     };
 
     print('Que peces, $token');
@@ -151,6 +149,7 @@ class _EmotionsPage extends State<EmotionsPage> {
       },
       body: emo,
     );
+    print("emotions status code --> ${request.statusCode}");
     if (request.statusCode == 200) {
       print(request.body);
     }
